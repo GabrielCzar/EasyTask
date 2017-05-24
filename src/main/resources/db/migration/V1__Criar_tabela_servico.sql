@@ -1,0 +1,5 @@
+CREATE TABLE servico (
+  sid SERIAL NOT NULL PRIMARY KEY,
+  categoria VARCHAR(200) NOT NULL,
+  atividade VARCHAR(500) NOT NULL
+);
