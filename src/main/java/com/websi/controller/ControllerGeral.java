@@ -12,14 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ControllerGeral {
 
     @RequestMapping("/")
-    @ResponseBody
     public String home () {
-        return "TESTANDO";
+        return "/index";
     }
-
-    @RequestMapping("/home")
-    @ResponseBody
-    public String teste () { return "TESTE"; }
-
-
 }
