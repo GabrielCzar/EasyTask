@@ -10,7 +10,8 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by gabriel on 29/05/17.
  */
-@Entity(name = "servicos")
+@Entity
+@Table(name = "servicos")
 public class Servico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +31,5 @@ public class Servico {
     private String Atividade;
 
     private String descricao;
+
 }
