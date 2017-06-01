@@ -1,4 +1,4 @@
-package com.websi;
+package com.websi.gethackers;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
