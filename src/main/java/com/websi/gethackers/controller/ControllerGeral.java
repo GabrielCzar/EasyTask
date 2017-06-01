@@ -13,6 +13,7 @@ public class ControllerGeral {
 
     @RequestMapping("/")
     public String home () {
+
         return "/index";
     }
 }

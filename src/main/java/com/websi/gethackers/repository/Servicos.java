@@ -8,6 +8,6 @@ import java.util.List;
 /**
  * Created by gabriel on 29/05/17.
  */
-//public interface ServicoRepository extends JpaRepository<Servico, Long> {
-    //public List<Servico> findServiceByName(String nome);
-//}
+public interface Servicos extends JpaRepository<Servico, Long> {
+    public List<Servico> findServiceByNameContainingIgnoreCase(String nome);
+}
