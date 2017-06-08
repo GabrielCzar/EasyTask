@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="resources/css/stylesheet.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body ng-app="controle_formulario">
+<body>
 
 <main>
     <div class="row">
@@ -18,7 +18,7 @@
                 </div>
 
                 <!-- Formulario de login -->
-                <fieldset class="container" hidden>
+                <fieldset id="fform_entrar" class="container">
                     <form id="form_entrar">
                         <div class="input-field col s8 offset-s2 offset-s2">
                             <input id="email" type="email" class="validate">
@@ -30,14 +30,14 @@
                         </div>
                         <div class="input-field col s8 offset-s2 offset-s2">
                             <input class="btn right" type="submit" value="Entrar">
-                            <a href="#form_cadastrar">Cadastrar-se</a>
+                            <a id="cadastrar" href="#!">Cadastrar-se</a>
                         </div>
                     </form>
                 </fieldset>
 
                 <!-- Formulario de cadastro -->
-                <fieldset class="container">
-                    <form id="form_cadastrar">
+                <fieldset id="fform_cadastrar" class="container" hidden>
+                    <form>
                         <div class="input-field col s8 offset-s2 offset-s2">
                             <input id="name" type="text" class="validate" required>
                             <label for="name" data-error="nome inválido" data-success="nome válido">Nome</label>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="input-field col s8 offset-s2 offset-s2">
                             <input class="btn right" type="submit" value="Cadastrar">
-                            <a href="#!">Entrar</a>
+                            <a id="entrar" href="#!">Entrar</a>
                         </div>
                     </form>
                 </fieldset>
@@ -79,9 +79,9 @@
     </div>
 </footer>
 
-<script src="jquery.js"></script>
-<script src="materialize.min.js"></script>
-<script src="script.min.js"></script>
+<script src="resources/js/jquery.js"></script>
+<script src="resources/js/materialize.min.js"></script>
+<script src="resources/js/script.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
 </body>
