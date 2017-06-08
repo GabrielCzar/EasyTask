@@ -1,7 +1,6 @@
 package com.websi.gethackers.model;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
@@ -25,7 +24,7 @@ public class Usuario {
     @Size(message = "Tamanho inválido", min = 11)
     @CPF(message = "CPF inválido")
     @Column(unique = true)
-    private Long cpf;
+    private String cpf;
 
     @NotNull(message = "Email é obrigatório")
     @Column(unique = true)
@@ -44,11 +43,11 @@ public class Usuario {
     @Transient
     private String url;
 
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

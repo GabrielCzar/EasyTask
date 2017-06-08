@@ -9,10 +9,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>GetHackers</title>
+    <title>EasyTask</title>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/layout/css/bootstrap.min.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/layout/css/bootstrap-theme.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/layout/css/materialize.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/layout/css/stylesheet.min.css}" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,19 +22,20 @@
 </head>
 
 <body>
-    <header>
-        <div class="jumbotron">
-            <div class="container ">
-                <h1>GetHackers</h1>
+<header>
+    <div class="card-panel">
+        <div class="container">
+            <h1>EasyTask</h1>
 
-            </div>
         </div>
-    </header>
-
-    <div class="container">
-        <th:block layout:fragment="conteudo"/>
     </div>
+</header>
+
+<div class="container">
+    <th:block layout:fragment="conteudo"/>
+</div>
 <script th:src="@{/layout/js/jquery.min.js}"></script>
-<script th:src="@{/layout/js/bootstrap.min.js}"></script>
+<script th:src="@{/layout/js/materialize.min.js}"></script>
+<script th:src="@{/layout/js/script.min.js}"></script>
 </body>
 </html>

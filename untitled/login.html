@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="resources/css/materialize.min.css">
+    <link rel="stylesheet" href="resources/css/stylesheet.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body ng-app="controle_formulario">
+
+<main>
+    <div class="row">
+        <div class="col s4 offset-s4 ">
+            <div class="center-align-form">
+                <div class="center-align center-align">
+                    <img class="espaco" src="resources/img/logo.png" alt="EasyTask"/>
+                </div>
+
+                <!-- Formulario de login -->
+                <fieldset class="container" hidden>
+                    <form id="form_entrar">
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <input id="email" type="email" class="validate">
+                            <label for="email" data-error="email inválido" data-success="email válido">Email</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <input id="password" type="password" class="validate" minlength="4">
+                            <label for="password" data-error="O mínimo é 4 caracteres">Password</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <input class="btn right" type="submit" value="Entrar">
+                            <a href="#form_cadastrar">Cadastrar-se</a>
+                        </div>
+                    </form>
+                </fieldset>
+
+                <!-- Formulario de cadastro -->
+                <fieldset class="container">
+                    <form id="form_cadastrar">
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <input id="name" type="text" class="validate" required>
+                            <label for="name" data-error="nome inválido" data-success="nome válido">Nome</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <input id="email" type="email" class="validate" required>
+                            <label for="email" data-error="email inválido" data-success="email válido">Email</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <input id="telefone" type="tel" class="validate">
+                            <label for="telefone" data-error="telefone inválido" data-success="telefone válido">Telefone</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <input id="password" type="password" class="validate" minlength="4" required>
+                            <label for="password" data-error="O mínimo é 4 caracteres">Senha</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <input id="rpassword" type="password" class="validate" minlength="4" required >
+                            <label for="rpassword" data-error="O mínimo é 4 caracteres">Confirme a senha</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <input class="btn right" type="submit" value="Cadastrar">
+                            <a href="#!">Entrar</a>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="page-footer transparent">
+    <div class="footer-copyright grey">
+        <div class="container">
+            © 2017 EasyTask
+            <a class="grey-text text-lighten-4 right" href="http://www.github.com/gabrielczar">
+                Desenvolvido por Gabriel César</a>
+        </div>
+    </div>
+</footer>
+
+<script src="jquery.js"></script>
+<script src="materialize.min.js"></script>
+<script src="script.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+</body>
+</html>

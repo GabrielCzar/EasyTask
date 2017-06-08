@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 /**
  * Created by gabriel on 29/05/17.
@@ -25,15 +26,39 @@ public class Servico {
     @Enumerated(EnumType.STRING)
     private TipoServico tipo;
 
-    @NotNull
+    @ElementCollection(targetClass = CategoriaServico.class)
     @Enumerated(EnumType.STRING)
-    private CategoriaServico categoria;
+    @Column(name = "categorias")
+    private Set<CategoriaServico> categorias;
 
     @NotBlank
-    private String Atividade;
+    private String atividade;
 
     @NotBlank
     private String descricao;
+
+    @OneToOne
+    @JoinColumn(name = "profissional_do_servico")
+    private Usuario profissional;
+
+    public Servico () {}
+
+    public Servico (String nome, TipoServico tipo, Set<CategoriaServico> categorias, String atividade, String descricao) {
+        this.nome = nome;
+        this.tipo = tipo;
+        this.categorias = categorias;
+        this.atividade = atividade;
+        this.descricao = descricao;
+    }
+
+    public Servico (Long id, String nome, TipoServico tipo, Set<CategoriaServico> categorias, String atividade, String descricao) {
+        this.id = id;
+        this.nome = nome;
+        this.tipo = tipo;
+        this.categorias = categorias;
+        this.atividade = atividade;
+        this.descricao = descricao;
+    }
 
     public Long getId() {
         return id;
@@ -59,20 +84,18 @@ public class Servico {
         this.tipo = tipo;
     }
 
-    public CategoriaServico getCategoria() {
-        return categoria;
-    }
+    public Set<CategoriaServico> getCategorias() { return categorias; }
 
-    public void setCategoria(CategoriaServico categoria) {
-        this.categoria = categoria;
-    }
+    public void addCategoria(CategoriaServico categoria) { categorias.add(categoria); }
+
+    public void remCategoria(CategoriaServico categoria) { categorias.remove(categoria); }
 
     public String getAtividade() {
-        return Atividade;
+        return atividade;
     }
 
     public void setAtividade(String atividade) {
-        Atividade = atividade;
+        this.atividade = atividade;
     }
 
     public String getDescricao() {

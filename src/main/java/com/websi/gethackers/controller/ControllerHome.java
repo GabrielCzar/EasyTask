@@ -2,18 +2,16 @@ package com.websi.gethackers.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Created by gabriel on 23/05/17.
+ * Created by gabriel on 05/06/17.
  */
-
 @Controller
-public class ControllerGeral {
+public class ControllerHome {
 
     @RequestMapping("/")
-    public String home () {
-
+    public String home() {
         return "/index";
     }
+
 }
