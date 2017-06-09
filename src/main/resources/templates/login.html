@@ -1,57 +1,108 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html ng-app="ValidacaoFormularios"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      layout:decorator="layout/simples">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/simples">
 
 <th:block layout:fragment="conteudo">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-        <title>EasyTask</title>
-
-        <link rel="stylesheet" type="text/css" th:href="@{/layout/css/bootstrap.min.css}" />
-        <link rel="stylesheet" type="text/css" th:href="@{/layout/css/bootstrap-theme.min.css}" />
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-    <body>
-    <form th:action="@{/login}" method="POST">
-        <div class="aw-simple-panel">
-            <img alt="EasyTask" th:src="@{/layout/images/logo-gray.png}"/>
-
-            <div>
-                Por favor, faça o login.
-            </div>
-
-            <div class="error" th:if="${#bools.isTrue(param.error)}">
-                O usuário e/ou senha não conferem
-            </div>
-
-            <div>
-                <div class="form-group  has-feedback">
-                    <input type="text" class="form-control  input-lg" placeholder="Seu usuário"
-                           autofocus="autofocus" name="username"/>
-                    <span class="glyphicon  glyphicon-envelope  form-control-feedback"></span>
+    <main>
+        <div class="row">
+            <div class="col s6 offset-s3">
+                <div class="container center-align">
+                    <a class="waves-effect waves-light" th:href="@{/home}">
+                        <img alt="EasyTask" th:src="@{/layout/images/logo.png}"/>
+                    </a>
                 </div>
 
-                <div class="form-group  has-feedback">
-                    <input type="password" class="form-control  input-lg" placeholder="Sua senha" name="password"/>
-                    <span class="glyphicon  glyphicon-lock  form-control-feedback" ></span>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn  btn-primary  btn-lg  aw-btn-full-width">Entrar</button>
-                </div>
-            </div>
+                <ul th:if="${#bools.isTrue(param.error)}">
+                    <li class="red-text center">O usuário e/ou senha não conferem</li>
+                </ul>
 
+                <!-- Formulario de login -->
+                <fieldset id="fform_entrar" >
+                    <form id="form_entrar" th:action="@{/login}"  method="POST">
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="username" type="text" class="validate" minlength="4" required="required" />
+                            <label for="username" data-error="O mínimo é 4 caracteres">Nome de usuário</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <i class="material-icons prefix">lock outline</i>
+                            <input id="password" type="password" class="validate" minlength="4" required="required" />
+                            <label for="password" data-error="O mínimo é 4 caracteres">Password</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <button class="waves-effect waves-light btn" type="submit">
+                                Entrar <i class="material-icons right">send</i>
+                            </button>
+                            <a class="right" href="#modal_forgetpass">Esqueceu a senha?</a>
+
+                            <!-- Modal Structure -->
+                            <div id="modal_forgetpass" class="modal">
+                                <div class="modal-content">
+                                    <h3>Digite seu endereço de e-mail e nós lhe enviaremos um link para redefinir sua senha.</h3>
+                                    <form th:action="@{/recuperar_senha}" method="POST">
+                                        <div class="input-field">
+                                            <i class="material-icons prefix">email</i>
+                                            <input id="emailfp" type="email" class="validate" required="required" />
+                                            <label for="emailfp" data-error="email inválido" data-success="email válido">Email</label>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" th:value="Enviar" />
+                                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2 center">
+                            <span>Não possui uma conta? </span>
+                            <a class="center" id="cadastrar" href="#!">Cadastrar-se</a>
+                        </div>
+                    </form>
+                </fieldset>
+
+                <!-- Formulario de cadastro -->
+                <fieldset id="fform_cadastrar" hidden="true">
+                    <form ng-controller="FormController">
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="name" type="text" class="validate" required="required" />
+                            <label for="name" data-error="nome inválido" data-success="nome válido">Nome</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <i class="material-icons prefix">email</i>
+                            <input id="email" type="email" class="validate" required="required" />
+                            <label for="email" data-error="email inválido" data-success="email válido">Email</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <i class="material-icons prefix">call</i>
+                            <input id="telefone" type="tel" class="validate" />
+                            <label for="telefone" data-error="telefone inválido" data-success="telefone válido">Telefone</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <i class="material-icons prefix">lock outline</i>
+                            <input id="password" type="password" class="validate" minlength="4" required="required" ng-model="pass"/>
+                            <label for="password" data-error="O mínimo é 4 caracteres">Senha</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <i class="material-icons prefix">lock</i>
+                            <input id="rpassword" type="password" class="validate" minlength="4" required="required" pattern="{{ pass }}" />
+                            <label for="rpassword" data-error="As senhas são diferentes">Confirme a senha</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <input class="btn" type="submit" value="Cadastrar" />
+                            <input class="btn" type="reset" value="Limpar"  />
+                        </div>
+                        <div class="input-field col s8 offset-s2 offset-s2 center">
+                            <span>Já possui uma conta? </span>
+                            <a id="entrar" href="#!">Entrar</a>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
         </div>
-    </form>
-    </body>
+    </main>
 </th:block>
 </html>

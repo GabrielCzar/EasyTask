@@ -2,8 +2,7 @@
 <html lang="pt"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -12,7 +11,8 @@
     <title>EasyTask</title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/layout/css/materialize.min.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/layout/css/stylesheet.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/layout/css/stylesheet.css}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,20 +22,22 @@
 </head>
 
 <body>
-<header>
-    <div class="card-panel">
-        <div class="container">
-            <h1>EasyTask</h1>
+<th:block layout:fragment="conteudo"/>
 
+<footer class="page-footer transparent">
+    <div class="footer-copyright grey">
+        <div class="container">
+            © 2017 EasyTask
+            <a class="grey-text text-lighten-4 right" href="http://www.github.com/gabrielczar">
+                Desenvolvido por Gabriel César</a>
         </div>
     </div>
-</header>
+</footer>
 
-<div class="container">
-    <th:block layout:fragment="conteudo"/>
-</div>
 <script th:src="@{/layout/js/jquery.min.js}"></script>
 <script th:src="@{/layout/js/materialize.min.js}"></script>
-<script th:src="@{/layout/js/script.min.js}"></script>
+<script th:src="@{/layout/js/angular.min.js}"></script>
+<script th:src="@{/layout/js/script.js}"></script>
+<script th:src="@{/layout/js/app.js}"></script>
 </body>
 </html>
