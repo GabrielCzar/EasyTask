@@ -15,3 +15,7 @@ main {
 #fform_entrar{
     margin-top: 20px;
 }
+
+.error {
+    color: #f2dede !important;
+}
