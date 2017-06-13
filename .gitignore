@@ -6,7 +6,7 @@ rebel.xml
 .mvn*
 mvnw*
 
-target/
+target*
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
