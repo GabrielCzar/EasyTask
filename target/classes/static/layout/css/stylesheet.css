@@ -1,0 +1,17 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto !important;
+}
+
+.distance {
+    margin-top: 10% !important;
+}
+
+.bg_gray {
+    background-color: #f6f6f6;
+}

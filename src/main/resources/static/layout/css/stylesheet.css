@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto !important;
+}
+
+.distance {
+<<<<<<< HEAD
+    margin-top: 10% !important;
+}
+
+.bg_gray {
+    background-color: #f6f6f6;
+}
+=======
+    margin-top: 3%;
+}
+
+#fform_entrar{
+    margin-top: 20px;
+}
+
+.error {
+    color: #f2dede !important;
+}
+>>>>>>> up
