@@ -2,6 +2,7 @@ package com.easytask.service;
 
 import com.easytask.model.Token;
 import com.easytask.model.Usuario;
+
 import java.util.List;
 
 public interface IUsuarioService {

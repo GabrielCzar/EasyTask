@@ -10,13 +10,14 @@
         <div class="col s6 offset-s3">
             <div class="container center-align">
                 <a class="waves-effect waves-light distance" th:href="@{/}">
+
                     <img alt="EasyTask" th:src="@{/layout/images/logo.png}"/>
                 </a>
             </div>
 
             <div class="card-panel red lighten-2" th:if="${#bools.isTrue(param.error)}">
                 <h6 class="white-text center alert-message"><i class="fa fa-exclamation-circle"></i>
-                    O usuário e/ou senha não conferem</h6>
+                  O usuário e/ou senha não conferem</h6>
             </div>
 
             <fieldset class="card-panel" id="fform_entrar" >
@@ -52,7 +53,11 @@
                         <form th:action="@{/recuperar_senha}" method="POST">
                             <div class="input-field">
                                 <i class="material-icons prefix">email</i>
+
                                 <input name="email" id="emailfp" type="email" class="validate" required="required" />
+
+                                <input id="emailfp" type="email" class="validate" required="required" />
+
                                 <label for="emailfp" data-error="email inválido" data-success="email válido">Email</label>
                             </div>
                             <div class="modal-footer">
@@ -66,6 +71,7 @@
 
             <!-- Formulario de cadastro -->
             <fieldset id="fform_cadastrar" hidden="true">
+
                 <form ng-controller="FormController" th:action="@{/cadastro}" method="post">
 
                     <div class="input-field col s8 offset-s2 offset-s2">
@@ -89,9 +95,15 @@
                         <label for="email" data-error="email inválido" data-success="email válido">Email</label>
                     </div>
                     <div class="input-field col s8 offset-s2 offset-s2">
+                        <i class="material-icons prefix">call</i>
+                        <input id="telefone" type="tel" class="validate" />
+                        <label for="telefone" data-error="telefone inválido" data-success="telefone válido">Telefone</label>
+                    </div>
+                    <div class="input-field col s8 offset-s2 offset-s2">
                         <i class="material-icons prefix">lock outline</i>
-                        <input name="password" id="ppassword" type="password" class="validate" minlength="4" required="required" ng-model="pass"/>
-                        <label for="ppassword" data-error="O mínimo é 4 caracteres">Senha</label>
+                        <input id="password" type="password" class="validate" minlength="4" required="required" ng-model="pass"/>
+                        <label for="password" data-error="O mínimo é 4 caracteres">Senha</label>
+
                     </div>
                     <div class="input-field col s8 offset-s2 offset-s2">
                         <i class="material-icons prefix">lock</i>
