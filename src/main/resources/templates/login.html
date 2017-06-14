@@ -14,14 +14,25 @@
                     <img alt="EasyTask" th:src="@{/layout/images/logo.png}"/>
                 </a>
             </div>
-
-            <div class="card-panel red lighten-2" th:if="${#bools.isTrue(param.error)}">
-                <h6 class="white-text center alert-message"><i class="fa fa-exclamation-circle"></i>
-                  O usuário e/ou senha não conferem</h6>
+            <!-- Mostrando os Erros -->
+            <div th:if="${#bools.isTrue(param.error)}" class="card-panel red lighten-2">
+                <h6 class="white-text center alert-message">
+                    <i class="fa fa-exclamation-circle"></i>
+                    O usuário e/ou senha não conferem</h6>
             </div>
 
-            <fieldset class="card-panel" id="fform_entrar" >
+            <ul th:if="${not #lists.isEmpty(erros)}" class="card-panel red lighten-2">
+                <li th:each="erro : ${erros}" th:text="${erro}"
+                     class="white-text center"></li>
+            </ul>
 
+            <ul id="tabs-swipe-demo"  class="tabs">
+                <li class="tab col s6"><a href="#form_login" class="active blue-text">Entrar</a></li>
+                <li class="tab col s6"><a href="#form_cadastro" class="blue-text">Cadastrar</a></li>
+            </ul>
+
+            <!-- Inicio Login -->
+            <fieldset class="card-panel" id="form_login">
                 <form th:action="@{/login}" method="post">
                     <div class="input-field col s8 offset-s2 offset-s2">
                         <i class="material-icons prefix">account_circle</i>
@@ -67,10 +78,12 @@
                         </form>
                     </div>
                 </div>
+                <!-- Fim modal -->
             </fieldset>
+            <!-- Fim login -->
 
             <!-- Formulario de cadastro -->
-            <fieldset id="fform_cadastrar" hidden="true">
+            <fieldset class="card-panel" id="form_cadastro">
 
                 <form ng-controller="FormController" th:action="@{/cadastro}" method="post">
 
@@ -120,6 +133,7 @@
                     </div>
                 </form>
             </fieldset>
+            <!-- Fim cadastro-->
         </div>
     </div>
 </th:block>

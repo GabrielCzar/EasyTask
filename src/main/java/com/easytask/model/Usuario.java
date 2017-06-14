@@ -3,22 +3,16 @@ package com.easytask.model;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.websocket.ClientEndpoint;
 
+import com.sun.istack.internal.Nullable;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,23 +25,24 @@ public class Usuario implements UserDetails {
     private static final long serialVersionUID = 991043816768268993L;
     @Id
     @NotNull(message = "Nome de usuário é obrigatório")
-    @Size(message = "O tamanho minimo é 4 caracteres", min = 4)
+    @Size(message = "O username deve ter no minimo é 4 caracteres", min = 4)
     private String username;
 
-    @NotNull(message = "Nome é obrigatório")
+    @Order
+    @NotNull(message = "O Nome é obrigatório")
     private String nome;
 
-    @Size(message = "Tamanho inválido", min = 11)
-    @CPF(message = "CPF inválido")
+    @Size(message = "O CPF deve ter 11 caracteres", min = 11)
+    @CPF(message = "O CPF inválido")
     @Column(unique = true)
     private String cpf;
 
-    @NotNull(message = "Email é obrigatório")
+    @NotNull(message = "O email é obrigatório")
     @Column(unique = true)
-    @Email(message = "Email inválido")
+    @Email(message = "O email é inválido")
     private String email;
 
-    @NotNull(message = "Senha é obrigatoria")
+    @NotNull(message = "A senha é obrigatoria")
     @Size(min = 4)
     @Pattern(regexp = ".*[A-Za-z0-9]+.*", message = "A senha deve conter letras e números")
     private String password;
@@ -61,6 +56,32 @@ public class Usuario implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="papel_usuario", joinColumns=@JoinColumn(name="usuario_id"), inverseJoinColumns=@JoinColumn(name="papel_id"))
     private List<Papel> papeis;
+
+    @Nullable
+    private String profissao;
+
+    @OneToMany
+    private List<Avaliacao> avaliacoes;
+
+    public boolean hasProfissao () {
+        return profissao != null;
+    }
+
+    public String getProfissao() {
+        return profissao;
+    }
+
+    public void setProfissao(String profissao) {
+        this.profissao = profissao;
+    }
+
+    public List<Avaliacao> getAvaliacoes() {
+        return avaliacoes;
+    }
+
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+        this.avaliacoes = avaliacoes;
+    }
 
     public boolean isHabilitado() {
         return habilitado;

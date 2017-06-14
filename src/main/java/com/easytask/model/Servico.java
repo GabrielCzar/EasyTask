@@ -2,6 +2,7 @@ package com.easytask.model;
 
 import com.easytask.model.enumeracoes.CategoriaServico;
 import com.easytask.model.enumeracoes.TipoServico;
+import com.sun.istack.internal.Nullable;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -36,6 +37,7 @@ public class Servico {
     @NotBlank
     private String descricao;
 
+    @Nullable
     @OneToOne
     @JoinColumn(name = "profissional_do_servico")
     private Usuario profissional;
