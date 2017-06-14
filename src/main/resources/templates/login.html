@@ -14,6 +14,7 @@
                     <img alt="EasyTask" th:src="@{/layout/images/logo.png}"/>
                 </a>
             </div>
+
             <!-- Mostrando os Erros -->
             <div th:if="${#bools.isTrue(param.error)}" class="card-panel red lighten-2">
                 <h6 class="white-text center alert-message">
@@ -21,15 +22,21 @@
                     O usuário e/ou senha não conferem</h6>
             </div>
 
-            <ul th:if="${not #lists.isEmpty(erros)}" class="card-panel red lighten-2">
-                <li th:each="erro : ${erros}" th:text="${erro}"
-                     class="white-text center"></li>
-            </ul>
+            <div th:if="${not #lists.isEmpty(erros)}" class="card-panel red lighten-2">
+                <ul>
+                    <li th:each="erro : ${erros}" th:text="${erro}" class="container white-text"></li>
+                </ul>
+            </div>
 
-            <ul id="tabs-swipe-demo"  class="tabs">
-                <li class="tab col s6"><a href="#form_login" class="active blue-text">Entrar</a></li>
-                <li class="tab col s6"><a href="#form_cadastro" class="blue-text">Cadastrar</a></li>
-            </ul>
+                <ul id="tabs-swipe-demo"  class="tabs">
+                    <li class="tab col s6">
+                        <a href="#form_login" class="teal-text tooltipped" data-position="top" data-delay="50"
+                           data-tooltip="Já possui uma conta? Entre">Entrar</a></li>
+                    <li class="tab col s6">
+                        <a href="#form_cadastro" class="teal-text tooltipped" data-position="top"
+                           data-delay="50" data-tooltip="Não possui uma conta? Cadastre-se">Cadastrar</a></li>
+                </ul>
+
 
             <!-- Inicio Login -->
             <fieldset class="card-panel" id="form_login">
@@ -50,12 +57,7 @@
                         </button>
                         <a class="right" href="#modal_forgetpass">Esqueceu a senha?</a>
                     </div>
-                    <div class="input-field col s8 offset-s2 offset-s2 center">
-                        <span>Não possui uma conta? </span>
-                        <a class="center" id="cadastrar" href="#!">Cadastrar-se</a>
-                    </div>
                 </form>
-
 
                 <!-- Modal Structure -->
                 <div id="modal_forgetpass" class="modal">
@@ -126,10 +128,6 @@
                     <div class="input-field col s8 offset-s2 offset-s2">
                         <input class="btn" type="submit" value="Cadastrar" />
                         <input class="btn" type="reset" value="Limpar"  />
-                    </div>
-                    <div class="input-field col s8 offset-s2 offset-s2 center">
-                        <span>Já possui uma conta? </span>
-                        <a id="entrar" href="#!">Entrar</a>
                     </div>
                 </form>
             </fieldset>

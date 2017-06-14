@@ -9,15 +9,11 @@ main {
 }
 
 .distance {
-<<<<<<< HEAD
     margin-top: 10% !important;
 }
 
 .bg_gray {
     background-color: #f6f6f6;
-}
-=======
-    margin-top: 3%;
 }
 
 #fform_entrar{
@@ -27,4 +23,7 @@ main {
 .error {
     color: #f2dede !important;
 }
->>>>>>> up
+
+.tabs .indicator {
+    background-color: #4db6ac !important;
+}

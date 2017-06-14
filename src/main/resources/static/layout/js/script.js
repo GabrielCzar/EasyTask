@@ -4,4 +4,5 @@
 $(() => {
     $('.modal').modal();
     $('ul.tabs').tabs();
+    $('.tooltipped').tooltip({delay: 40});
 });
