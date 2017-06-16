@@ -1,21 +1,20 @@
 package com.easytask.model;
 
-import java.util.Collection;
-import java.util.List;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import javax.websocket.ClientEndpoint;
-
 import com.sun.istack.internal.Nullable;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios",
@@ -24,12 +23,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class Usuario implements UserDetails {
     private static final long serialVersionUID = 991043816768268993L;
     @Id
-    @NotNull(message = "Nome de usuário é obrigatório")
-    @Size(message = "O username deve ter no minimo é 4 caracteres", min = 4)
+    @NotBlank(message = "Nome de usuário é obrigatório")
+    @Size(message = "O username deve ter no minimo 4 caracteres", min = 4)
     private String username;
 
     @Order
-    @NotNull(message = "O Nome é obrigatório")
+    @NotBlank(message = "O Nome é obrigatório")
     private String nome;
 
     @Size(message = "O CPF deve ter 11 caracteres", min = 11)
@@ -180,11 +179,9 @@ public class Usuario implements UserDetails {
     }
 
     @Override
-    public String getUsername() { return this.email; }
+    public String getUsername() { return this.username; }
     
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	public void setUsername(String username) { this.username = username; }
     
     public Boolean getHabilitado() {
 		return habilitado;

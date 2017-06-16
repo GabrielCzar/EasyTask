@@ -23,19 +23,17 @@
             </div>
 
             <div th:if="${not #lists.isEmpty(erros)}" class="card-panel red lighten-2">
-                <ul>
-                    <li th:each="erro : ${erros}" th:text="${erro}" class="container white-text"></li>
-                </ul>
+                <ul><li th:each="erro : ${erros}" th:text="${erro}" class="container white-text"></li></ul>
             </div>
 
-                <ul id="tabs-swipe-demo"  class="tabs">
-                    <li class="tab col s6">
-                        <a href="#form_login" class="teal-text tooltipped" data-position="top" data-delay="50"
-                           data-tooltip="Já possui uma conta? Entre">Entrar</a></li>
-                    <li class="tab col s6">
-                        <a href="#form_cadastro" class="teal-text tooltipped" data-position="top"
-                           data-delay="50" data-tooltip="Não possui uma conta? Cadastre-se">Cadastrar</a></li>
-                </ul>
+            <ul id="tabs-swipe-demo"  class="tabs">
+                <li class="tab col s6">
+                    <a href="#form_login" class="teal-text tooltipped" data-position="top" data-delay="50"
+                       data-tooltip="Já possui uma conta? Entre">Entrar</a></li>
+                <li class="tab col s6">
+                    <a href="#form_cadastro" class="teal-text tooltipped" data-position="top"
+                       data-delay="50" data-tooltip="Não possui uma conta? Cadastre-se">Cadastrar</a></li>
+            </ul>
 
 
             <!-- Inicio Login -->
@@ -86,7 +84,6 @@
 
             <!-- Formulario de cadastro -->
             <fieldset class="card-panel" id="form_cadastro">
-
                 <form ng-controller="FormController" th:action="@{/cadastro}" method="post">
 
                     <div class="input-field col s8 offset-s2 offset-s2">
@@ -116,7 +113,7 @@
                     </div>
                     <div class="input-field col s8 offset-s2 offset-s2">
                         <i class="material-icons prefix">lock outline</i>
-                        <input id="password" type="password" class="validate" minlength="4" required="required" ng-model="pass"/>
+                        <input name="password" id="password" type="password" class="validate" minlength="4" required="required" ng-model="pass"/>
                         <label for="password" data-error="O mínimo é 4 caracteres">Senha</label>
 
                     </div>

@@ -26,24 +26,24 @@ public class LoginController {
     UsuarioService usuarioService;
 
     @RequestMapping("/login")
-    public String login (@AuthenticationPrincipal User user) {
+    public ModelAndView login (@AuthenticationPrincipal User user) {
         if (user != null)
-            return "redirect:/";
-        return "login";
+            return new ModelAndView("redirect:/");
+        return new ModelAndView("login");
     }
 
     @PostMapping("/cadastro")
-    public String add(@Valid @ModelAttribute("usuario") Usuario usuario,
+    public ModelAndView add(@Valid @ModelAttribute("usuario") Usuario usuario,
                             BindingResult result,
                             RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             ArrayList<String> erros = new ArrayList<>();
             for (FieldError err : result.getFieldErrors()) erros.add(err.getDefaultMessage());
             redirectAttributes.addFlashAttribute("erros", erros);
-            return "redirect:/login#form_cadastro";
+            return new ModelAndView("redirect:/login#form_cadastro");
         }
         usuarioService.add(usuario);
-        return "/user/home";
+        return new ModelAndView("/user/home");
     }
 
 }
