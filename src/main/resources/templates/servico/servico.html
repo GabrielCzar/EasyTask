@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/profile">
+<body>
+<th:block layout:fragment="conteudo">
+    <div class="row">
+        <div class="container">
+            <div>
+                <h3>Minhas demandas ou pedidos</h3>
+                <p>Nesta seção, você verá sua demanda e fornecedores que são essas demandas concorrentes submetido.
+                    Neste ponto, você não tem nenhuma demanda intermediária.</p>
+            </div>
+
+            <hr />
+
+            <div>
+                <h4>Insira uma nova demanda</h4>
+                <ol>
+                    <li>Fique tranquilo, faça sua solicitação livremente(você paga apenas o preço do fornecedor designado)</li>
+                    <li>Em poucas horas voçe começará a receber informações sobre fornecedores com ofertas</li>
+                    <li>Escolha o melhor fornecedor que imediatamente começará a trabalhar</li>
+                </ol>
+                <form th:action="@{/new_service}" method="post">
+                    <div>
+                        <input th:name="nome" />
+                        <label>Nome da demanda</label>
+                    </div>
+                    <div>
+                        <select>
+                            <option>categoria</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>
