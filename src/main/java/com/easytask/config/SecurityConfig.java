@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-            	.antMatchers("/", "/home", "/cadastro")
+            	.antMatchers("/", "/cadastro")
             		.permitAll()
             	.anyRequest()
             		.authenticated()
@@ -45,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+    	auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+		//auth.inMemoryAuthentication().withUser("gabriel").password("gabriel").roles("ADMIN");
     }
 }

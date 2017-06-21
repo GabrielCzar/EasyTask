@@ -17,22 +17,21 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "usuarios",
-        uniqueConstraints =
-        @UniqueConstraint(columnNames = {"email", "cpf"}, name = "usuario_uk"))
+@Table(name = "usuarios")
 public class Usuario implements UserDetails {
     private static final long serialVersionUID = 991043816768268993L;
+
     @Id
     @NotBlank(message = "Nome de usuário é obrigatório")
-    @Size(message = "O username deve ter no minimo 4 caracteres", min = 4)
+    @Size(message = "O username deve ter no minimo {min} caracteres", min = 4)
     private String username;
 
     @Order
     @NotBlank(message = "O Nome é obrigatório")
     private String nome;
 
-    @Size(message = "O CPF deve ter 11 caracteres", min = 11)
-    @CPF(message = "O CPF inválido")
+    @Size(message = "O CPF deve ter {min} caracteres", min = 11)
+    @CPF(message = "O CPF é inválido")
     @Column(unique = true)
     private String cpf;
 
@@ -43,7 +42,7 @@ public class Usuario implements UserDetails {
 
     @NotNull(message = "A senha é obrigatoria")
     @Size(min = 4)
-    @Pattern(regexp = ".*[A-Za-z0-9]+.*", message = "A senha deve conter letras e números")
+    //@Pattern(regexp = ".*[A-Za-z0-9]+.*", message = "A senha deve conter letras e números")
     private String password;
 
     private String telefone;

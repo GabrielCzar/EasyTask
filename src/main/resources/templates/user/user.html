@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/profile">
+<body>
+<th:block layout:fragment="conteudo">
+    <div class="row">
+        <div class="container">
+
+            <div class="col s12 distance-min">
+                <ul class="tabs">
+                    <li class="tab col s3"><a class="black-text" href="#editar_perfil">Editar Perfil</a></li>
+                    <li class="tab col s3"><a class="black-text" href="#altera_credenciais">Alterar Credenciais</a></li>
+                    <li class="tab col s3"><a class="black-text" href="#faturamento">Faturamento</a></li>
+                    <li class="tab col s3"><a class="black-text" href="#avaliacao">Avaliação</a></li>
+                </ul>
+            </div>
+            <div id="editar_perfil" class="col s12">
+                <form th:action="@{/user/edit}" method="post">
+
+                    <input name="username"  hidden="false"/>
+                    <input name="cpf" hidden="false" />
+
+                    <fieldset>
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <i class="material-icons prefix">person</i>
+                            <input name="nome" id="name" type="text" class="validate" required="required" />
+                            <label for="name" data-error="nome inválido" data-success="nome válido">Nome</label>
+                        </div>
+
+
+                        <div class="input-field col s8 offset-s2 offset-s2">
+                            <i class="material-icons prefix">call</i>
+                            <input id="telefone" type="tel" class="validate" />
+                            <label for="telefone" data-error="telefone inválido" data-success="telefone válido">Telefone</label>
+                        </div>
+                    </fieldset>
+                </form>
+
+            </div>
+            <div id="altera_credenciais" class="col s12">Test 2</div>
+            <div id="faturamento" class="col s12">Test 3</div>
+            <div id="avaliacao" class="col s12">Test 4</div>
+
+        </div>
+    </div>
+</th:block>
+</body>
+</html>

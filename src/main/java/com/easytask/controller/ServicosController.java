@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/servicos")
-public class ControllerServicos {
+public class ServicosController {
 
     @GetMapping("/user")
     public String home () {

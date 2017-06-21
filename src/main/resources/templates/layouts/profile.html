@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>EasyTask</title>
+
+    <link rel="shortcut icon" type="image/png" th:href="@{/layout/images/icones/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/layout/css/materialize.min.css}" />
+    <link rel="stylesheet" th:href="@{/layout/css/stylesheet.css}" />
+    <link rel="stylesheet" th:href="@{//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css}" />
+    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" />
+
+</head>
+
+<body>
+<!-- Navbar e Menu -->
+<nav class="nav-wrapper transparent">
+    <div class="nav-wrapper">
+        <div class="container">
+            <a href="#" data-activates="slide-out" class="button-collapse black-text"><i class="material-icons md-48">menu</i></a>
+
+            <a class="center" th:href="@{/}">
+                <img class="responsive-img hide-on-small-only" th:src="@{/layout/images/logo.png}" />
+                <img class="responsive-img hide-on-med-and-up" th:src="@{/layout/images/mini-logo.png}" />
+            </a>
+
+            <ul id="slide-out" class="side-nav">
+                <li><div class="userView">
+                    <div class="background">
+                        <img src="images/office.jpg" />
+                    </div>
+                    <a href="#!user"><img class="circle" src="images/yuna.jpg" /></a>
+                    <a href="#!name"><span class="white-text name">John Doe</span></a>
+                    <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                </div></li>
+                <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+                <li><a href="#!">Second Link</a></li>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader">Subheader</a></li>
+                <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+            </ul>
+
+
+            <div class="right hide-on-med-and-down">
+                <a class='dropdown-button btn btn-flat btn-large' href='#'
+                   data-activates='dropdown_user_notifications'>
+                    <i class="material-icons left">notifications</i>
+                    <span class='new badge right red' data-badge-caption="">
+                        10 <!-- Verificar notificacoes -->
+                    </span>
+                </a>
+
+                <a class='dropdown-button btn btn-flat btn-large' th:href='@{/home}'
+                   data-activates='dropdown_user_account'>
+                    <span class="left" th:text="${#authentication.name}"></span>
+                    <i class="material-icons right">account_circle</i>
+                </a>
+
+                <ul id='dropdown_user_notifications' class='dropdown-content'>
+                    <li><a class="black-text">NOTIFICACOES</a></li>
+                </ul>
+
+                <ul id='dropdown_user_account' class='dropdown-content'>
+                    <li><a class="black-text" th:href="@{/home}"><i class="material-icons black-text">home</i>Visão Geral</a></li>
+                    <li><a class="black-text" th:href='@{/user}'><i class="material-icons black-text">person_outline</i>Editar Perfil</a></li>
+                    <li><a class="black-text" th:href="@{/logout}"><i class="material-icons black-text">exit_to_app</i>Sair</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Conteudo -->
+<main>
+    <th:block layout:fragment="conteudo"/>
+</main>
+
+<!-- Footer -->
+<footer class="page-footer grey lighten-1">
+    <div class="center">
+        <h5>
+            <p>Você precisa de nossa ajuda? Contacte-nos!</p>
+
+            <a href="mailto:gabrielcesar.a.l@gmail.com">
+                <i class="material-icons prefix">mail</i>
+                contato@easytask.com</a>
+        </h5>
+
+        <p><a class="black-text" href="#">FAQ</a> |
+            <a class="black-text" href="#">Quem Somos</a> |
+            <a class="black-text" href="#">Termos e Condições</a></p>
+
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2017 EasyTask
+            <a class="grey-text text-lighten-4 right" href="http://www.github.com/gabrielczar">
+                Desenvolvido por Gabriel César</a>
+        </div>
+    </div>
+</footer>
+
+<script th:src="@{/layout/js/jquery.min.js}"></script>
+<script th:src="@{/layout/js/materialize.min.js}"></script>
+<script th:src="@{/layout/js/angular.min.js}"></script>
+<script th:src="@{/layout/js/script.js}"></script>
+<script th:src="@{/layout/js/app.js}"></script>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="@{https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js}"></script>
+<script src="@{https://oss.maxcdn.com/respond/1.4.2/respond.min.js}"></script>
+<![endif]-->
+
+</body>
+</html>

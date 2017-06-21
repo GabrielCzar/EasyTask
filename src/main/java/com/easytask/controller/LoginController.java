@@ -1,6 +1,7 @@
 package com.easytask.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -26,9 +27,10 @@ public class LoginController {
     UsuarioService usuarioService;
 
     @RequestMapping("/login")
-    public ModelAndView login (@AuthenticationPrincipal User user) {
-        if (user != null)
+    public ModelAndView login (Authentication authentication) {
+        if (authentication != null) {
             return new ModelAndView("redirect:/");
+        }
         return new ModelAndView("login");
     }
 

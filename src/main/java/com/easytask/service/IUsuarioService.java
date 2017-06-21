@@ -13,6 +13,8 @@ public interface IUsuarioService {
 
     Usuario findUserByUsername (String username);
 
+    Usuario findUsuarioByUsernameOrEmail(String username_or_email);
+
     List<Usuario> findUser();
 
     boolean delete (Usuario usuario);

@@ -8,9 +8,7 @@ import java.util.List;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, String>{
-    Usuario findByEmail(String email);
-
-    Usuario findByCpf(String cpf);
-
+    //Usuario findUsuarioByUsernameOrEmail(String param);
+    Usuario findUsuarioByEmail(String email);
     List<Usuario> findAllByOrderByNomeAsc();
 }

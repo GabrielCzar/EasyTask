@@ -13,9 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Created by gabriel on 12/06/17.
- */
 @Service
 @Transactional
 public class UsuarioService implements IUsuarioService{
@@ -57,6 +54,14 @@ public class UsuarioService implements IUsuarioService{
     }
 
     @Override
+    public Usuario findUsuarioByUsernameOrEmail(String username_or_email) {
+        Usuario usuario = usuarioRepository.findOne(username_or_email);
+        if (usuario == null)
+            return  usuarioRepository.findUsuarioByEmail(username_or_email);
+        return usuario;
+    }
+
+    @Override
     public List<Usuario> findUser() {
         return usuarioRepository.findAllByOrderByNomeAsc();
     }
@@ -73,12 +78,12 @@ public class UsuarioService implements IUsuarioService{
 
     @Override
     public Usuario findByEmail(String email) {
-        return usuarioRepository.findByEmail(email);
+        return usuarioRepository.findUsuarioByEmail(email);
     }
 
     @Override
     public void recoverPassword(String email) {
-        Usuario usuario = usuarioRepository.findByEmail(email);
+        Usuario usuario = usuarioRepository.findUsuarioByEmail(email);
         if (usuario == null)
             return;
             Token token = tokenRepository.findByUsuario(usuario);
