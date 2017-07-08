@@ -2,7 +2,6 @@ package com.easytask.model;
 
 import com.easytask.model.enumeracoes.CategoriaServico;
 import com.easytask.model.enumeracoes.TipoServico;
-import com.sun.istack.internal.Nullable;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;

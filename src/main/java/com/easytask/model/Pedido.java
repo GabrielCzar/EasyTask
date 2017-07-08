@@ -1,7 +1,6 @@
 package com.easytask.model;
 
 import com.easytask.model.enumeracoes.Status;
-import com.sun.istack.internal.Nullable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 

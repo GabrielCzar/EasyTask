@@ -1,6 +1,5 @@
 package com.easytask.model;
 
-import com.sun.istack.internal.Nullable;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
