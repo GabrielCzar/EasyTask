@@ -44,7 +44,7 @@ public class LoginAndHomeController {
             return new ModelAndView("redirect:/login#form_cadastro");
         }
         usuarioService.add(usuario);
-        return new ModelAndView("/login");
+        return login(null);
     }
 
     @RequestMapping("/")
