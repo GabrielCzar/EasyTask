@@ -36,7 +36,6 @@ public class Servico {
     @NotBlank
     private String descricao;
 
-    @Nullable
     @OneToOne
     @JoinColumn(name = "profissional_do_servico")
     private Usuario profissional;

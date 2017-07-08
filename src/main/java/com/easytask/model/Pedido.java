@@ -32,7 +32,6 @@ public class Pedido {
     @NumberFormat(pattern = "#,##0.00")
     private BigDecimal valor_estimado;
 
-    @Nullable
     private Integer prazo;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")

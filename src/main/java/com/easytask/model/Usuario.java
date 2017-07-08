@@ -66,7 +66,6 @@ public class Usuario implements UserDetails {
         this.hasProfissao = hasProfissao;
     }
 
-    @Nullable
     private String profissao;
 
     @OneToMany
