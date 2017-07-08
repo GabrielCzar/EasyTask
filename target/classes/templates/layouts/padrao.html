@@ -2,7 +2,8 @@
 <html lang="pt"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,10 +12,9 @@
     <title>EasyTask</title>
 
     <link rel="shortcut icon" type="image/png" th:href="@{/layout/images/icones/favicon.ico}" />
-
     <link rel="stylesheet" th:href="@{/layout/css/materialize.min.css}" />
     <link rel="stylesheet" th:href="@{/layout/css/stylesheet.css}" />
-    <link rel="stylesheet" th:href="@{/layout/css/font-awesome.min.css}" />
+    <link rel="stylesheet" th:href="@{//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css}" />
     <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -26,10 +26,43 @@
 </head>
 
 <body>
+<!-- Navbar e Menu -->
+<nav class="nav-extended transparent">
+    <div class="nav-wrapper">
+        <div class="container">
+            <a th:href="@{/}">
+                <img class="responsive-img" th:src="@{/layout/images/logo.png}" />
+            </a>
+
+            <ul class="right col s12">
+                <li sec:authorize="not isAuthenticated()">
+                    <a class="btn btn-flat btn-large col s12" th:href="@{/login}">
+                        <span>Entrar</span><i class="material-icons right">account_circle</i>
+                    </a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()">
+                    <a class='dropdown-button btn btn-flat btn-large' th:href='@{/servicos/user}'
+                       data-activates='dropdown_user_account'>
+                        <span th:text="${#authentication.name}"></span>
+                        <i class="material-icons right">account_circle</i>
+                    </a>
+                    <ul id='dropdown_user_account' class='dropdown-content'>
+                        <li><a class="black-text" th:href="@{/servicos/user}"><i class="material-icons black-text">home</i>Acessar Conta</a></li>
+                        <li><a class="black-text" th:href="@{/logout}"><i class="material-icons black-text">exit_to_app</i>Sair</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Conteudo -->
 <main>
     <th:block layout:fragment="conteudo"/>
 </main>
 
+<!-- Footer -->
 <footer class="page-footer transparent">
     <div class="footer-copyright grey">
         <div class="container">
@@ -41,6 +74,7 @@
 </footer>
 
 <script th:src="@{/layout/js/jquery.min.js}"></script>
+<script th:src="@{/layout/js/jquery.masknumber.min.js}"></script>
 <script th:src="@{/layout/js/materialize.min.js}"></script>
 <script th:src="@{/layout/js/angular.min.js}"></script>
 <script th:src="@{/layout/js/script.js}"></script>

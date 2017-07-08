@@ -2,11 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layouts/simples">
+      layout:decorator="layouts/padrao">
 <body>
-    <th:block layout:fragment="conteudo">
-        OK
 
-    </th:block>
+
+<th:block layout:fragment="conteudo">
+    <div class="row">
+        <div class="carousel carousel-slider">
+            <a class="carousel-item" href="#one!"><img class="responsive-img" th:src="@{/layout/images/banners/banner_1.jpg}" /></a>
+            <a class="carousel-item" href="#two!"><img class="responsive-img" th:src="@{/layout/images/banners/banner_2.jpg}" /></a>
+            <a class="carousel-item" href="#three!"><img class="responsive-img" th:src="@{/layout/images/banners/banner_3.jpg}" /></a>
+        </div>
+
+        <div class="container center">
+            <h4>Como funciona o EasyTask?</h4>
+            <p>Nós te ajudamos a contratar o melhor profissional para o serviço que você precisa.</p>
+
+            PASSO A PASSO BASICO
+            3 passos
+        </div>
+    </div>
+</th:block>
 </body>
 </html>

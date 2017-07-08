@@ -34,7 +34,6 @@
                        data-delay="50" data-tooltip="Não possui uma conta? Cadastre-se">Cadastrar</a></li>
             </ul>
 
-
             <!-- Inicio Login -->
             <fieldset class="card-panel" id="form_login">
                 <form th:action="@{/login}" method="post">
@@ -98,7 +97,7 @@
                     <div class="input-field col m8 offset-m2 s12">
                         <i class="material-icons prefix">chrome_reader_mode</i>
                         <input name="cpf" id="cpf" type="text" class="validate" required="required" />
-                        <label for="cpf" data-error="nome inválido" data-success="nome válido">CPF</label>
+                        <label for="cpf" data-error="cpf inválido" data-success="nome válido">CPF</label>
                     </div>
                     <div class="input-field col m8 offset-m2 s12">
                         <i class="material-icons prefix">email</i>

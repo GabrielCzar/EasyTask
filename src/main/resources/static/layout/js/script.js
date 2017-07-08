@@ -25,10 +25,13 @@ $(() => {
             draggable: true // Choose whether you can drag to open on touch screens
         }
     );
+    $('select').material_select();
 
     /* Funcoes alternativas */
     function autoplay() {
         $('.carousel').carousel('next');
         setTimeout(autoplay, 4500);
     };
+
+
 });

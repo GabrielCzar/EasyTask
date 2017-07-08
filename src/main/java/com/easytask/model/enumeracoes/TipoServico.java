@@ -18,4 +18,6 @@ public enum TipoServico {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+
 }

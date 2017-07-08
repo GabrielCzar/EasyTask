@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/profile">
+<body>
+    <th:block layout:fragment="conteudo">
+        <div class="row">
+            <div class="container">
+                <h4>Inserir demanda</h4>
+
+                <form th:action="@{/servicos/user/new-order}" method="post">
+                    <div class="input-field col m8">
+                        <input id="nome_demanda" type="text" data-length="255" th:name="nome"
+                               th:value="${servico.nome}" class="validate" required="required" />
+                        <label for="nome_demanda" data-error="nome inválido">Nome da demanda</label>
+                    </div>
+                    <div class="input-field col m8">
+                        <select id="tipo" th:name="tipo" th:value="*{tipos}">
+                            <option selected="selected" th:each="tipo : ${tipos}"
+                                    th:if="${tipo == servico.tipo}"
+                                    th:value="${tipo}" th:text="${tipo.nome}">Tipo</option>
+                            <option th:each="tipo : ${tipos}"
+                                    th:unless="${tipo == servico.tipo}"
+                                    th:value="${tipo}" th:text="${tipo.nome}">Tipo</option>
+                        </select>
+                        <label for="tipo">Tipo</label>
+                    </div>
+                    <div class="input-field col m8">
+                        <select id="categoria" th:name="categoria" th:value="*{categorias}">
+                            <option th:each="categoria : ${categorias}"
+                                    th:value="${tipo}"
+                                    th:text="${categoria.nome}">
+                                Categoria</option>
+                        </select>
+                        <label for="categoria">Categoria</label>
+                    </div>
+
+                    <div class="input-field col m8">
+                        <input id="atv_demanda" type="text" th:name="atividade" required="required"/>
+                        <label for="atv_demanda">Objetivo da demanda</label>
+                    </div>
+
+                    <div class="input-field col m8">
+                        <input class="materialize-textarea" id="desc_demanda" type="text" th:name="descricao" required="required"/>
+                        <label for="desc_demanda">Descrição da demanda</label>
+                    </div>
+
+                    <div class="input-field col m8">
+                        <input id="vest_demanda" type="number" step="any" th:name="valor_estimado"  />
+                        <label for="vest_demanda">Valor estimado da demanda</label>
+                    </div>
+
+                    <div class="input-field col m8">
+                        <input id="prazo" type="number" th:name="prazo" />
+                        <label for="prazo">Prazo da demanda em dias</label>
+                    </div>
+
+                    <div class="input-field col m8">
+                        <input class="btn right" th:type="submit" value="Inserir Demanda" />
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </th:block>
+</body>
+</html>

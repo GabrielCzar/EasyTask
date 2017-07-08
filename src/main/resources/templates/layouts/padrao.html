@@ -42,32 +42,17 @@
                 </li>
 
                 <li sec:authorize="isAuthenticated()">
-                    <a class='dropdown-button btn btn-flat btn-large' th:href='@{/home}'
+                    <a class='dropdown-button btn btn-flat btn-large' th:href='@{/servicos/user}'
                        data-activates='dropdown_user_account'>
                         <span th:text="${#authentication.name}"></span>
                         <i class="material-icons right">account_circle</i>
                     </a>
                     <ul id='dropdown_user_account' class='dropdown-content'>
-                        <li><a class="black-text" th:href="@{/home}"><i class="material-icons black-text">home</i>Acessar Conta</a></li>
+                        <li><a class="black-text" th:href="@{/servicos/user}"><i class="material-icons black-text">home</i>Acessar Conta</a></li>
                         <li><a class="black-text" th:href="@{/logout}"><i class="material-icons black-text">exit_to_app</i>Sair</a></li>
                     </ul>
                 </li>
             </ul>
-
-            <!-- CATEGORIAS
-            <ul class="green-text card-alert">
-                <li><a class="btn-floating btn-large blue darken-4 blue-grey-text" href="#">Categ</a></li>
-                <li><a class="btn-floating btn-large blue darken-4 blue-grey-text" href="#">Categ</a></li>
-                <li><a class="btn-floating btn-large blue darken-4 blue-grey-text" href="#">Categ</a></li>
-                <li><a class="btn-floating btn-large blue darken-4 blue-grey-text" href="#">Categ</a></li>
-                <li><a class="btn-floating btn-large blue darken-4 blue-grey-text" href="#">Categ</a></li>
-                <li><a class="btn-floating btn-large blue darken-4 blue-grey-text" href="#">Categ</a></li>
-                <li><a class="btn-floating btn-large blue darken-4  blue-grey-text" href="#">Categ</a></li>
-                <li><a class="btn-floating btn-large blue darken-4  blue-grey-text" href="#">Categ</a></li>
-                <li><a class="btn-floating btn-large blue darken-4  blue-grey-text" href="#">Categ</a></li>
-                <li><a class="btn-floating btn-large blue darken-4  blue-grey-text" href="#">Categ</a></li>
-            </ul>
-            -->
         </div>
     </div>
 </nav>
@@ -89,6 +74,7 @@
 </footer>
 
 <script th:src="@{/layout/js/jquery.min.js}"></script>
+<script th:src="@{/layout/js/jquery.masknumber.min.js}"></script>
 <script th:src="@{/layout/js/materialize.min.js}"></script>
 <script th:src="@{/layout/js/angular.min.js}"></script>
 <script th:src="@{/layout/js/script.js}"></script>

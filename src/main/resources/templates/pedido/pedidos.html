@@ -1,0 +1,11 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/profile">
+<body>
+<th:block layout:fragment="conteudo">
+    <p th:text="${pedido.dataFim}">DATA AKI</p>
+    <input type="datetime" />
+</th:block>
+</body>
+</html>

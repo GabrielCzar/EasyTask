@@ -40,9 +40,9 @@ public class Usuario implements UserDetails {
     @Email(message = "O email é inválido")
     private String email;
 
+    //@Pattern(regexp = ".*[A-Za-z0-9]+.*", message = "A senha deve conter letras e números")
     @NotNull(message = "A senha é obrigatoria")
     @Size(min = 4)
-    //@Pattern(regexp = ".*[A-Za-z0-9]+.*", message = "A senha deve conter letras e números")
     private String password;
 
     private String telefone;
@@ -52,8 +52,20 @@ public class Usuario implements UserDetails {
     private Boolean habilitado;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="papel_usuario", joinColumns=@JoinColumn(name="usuario_id"), inverseJoinColumns=@JoinColumn(name="papel_id"))
+    @JoinTable(name="papel_usuario",
+            joinColumns=@JoinColumn(name="usuario_id"),
+            inverseJoinColumns=@JoinColumn(name="papel_id"))
     private List<Papel> papeis;
+
+    private Boolean hasProfissao;
+
+    public Boolean getHasProfissao() {
+        return hasProfissao;
+    }
+
+    public void setHasProfissao(Boolean hasProfissao) {
+        this.hasProfissao = hasProfissao;
+    }
 
     @Nullable
     private String profissao;

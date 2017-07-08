@@ -1,29 +1,43 @@
 package com.easytask.controller;
 
+import com.easytask.model.Servico;
+import com.easytask.model.enumeracoes.CategoriaServico;
+import com.easytask.model.enumeracoes.TipoServico;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.jws.WebParam;
+import java.util.HashMap;
 
 @Controller
-@RequestMapping("/servicos")
+@RequestMapping("servicos/user")
 public class ServicosController {
 
-    @GetMapping("/user")
-    public String home () {
-        return "/servicos";
+    @GetMapping
+    public ModelAndView servicosUser (HashMap<String, Object> map){
+        map.put("tipos", TipoServico.values());
+        map.put("categorias", CategoriaServico.values());
+        return new ModelAndView("servico/servico", map);
     }
 
-    @GetMapping("/user/{id}")
-    public String getServicosUser (){
-        return "/servicos";
+    @PostMapping("/new-order")
+    public ModelAndView newOrder (Servico servico, HashMap<String, Object> map){
+        map.put("tipos", TipoServico.values());
+        map.put("categorias", CategoriaServico.values());
+        return new ModelAndView("servico/order-finish", map);
     }
 
-    @PostMapping("/user/{id}")
-    public String saveServicoUser (){
-        return "/servicos";
+
+    @PostMapping("/finish-order")
+    public ModelAndView newOrderFinish (Servico servico, ModelAndView mv) {
+        System.out.println("ENTROU FINISH ----------- FINISH");
+        return servicosUser(new HashMap<>());
     }
 
-    @DeleteMapping("/user/{id}")
-    public String remServicosUser (){
-        return "/servicos";
+    @PostMapping("/{id}")
+    public ModelAndView saveServicoUser (){
+        return new ModelAndView("servico/servico");
     }
+
 }

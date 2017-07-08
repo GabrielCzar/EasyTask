@@ -6,33 +6,59 @@
 <th:block layout:fragment="conteudo">
     <div class="row">
         <div class="container">
-            <div>
-                <h3>Minhas demandas ou pedidos</h3>
-                <p>Nesta seção, você verá sua demanda e fornecedores que são essas demandas concorrentes submetido.
-                    Neste ponto, você não tem nenhuma demanda intermediária.</p>
+            <ul class="tabs distance-min">
+                <li class="tab col s3"><a class="black-text" href="#meus_pedidos">Minhas Demandas</a></li>
+                <li class="tab col s3"><a class="black-text" href="#minhas_ordens">Minhas Ordens</a></li>
+            </ul>
+            <div id="meus_pedidos" class="col m12 s12">
+                <div>
+                    <h3>Minhas demandas ou pedidos</h3>
+                    <p>Nesta seção, você verá sua demanda e fornecedores que são essas demandas concorrentes submetido.
+                        Neste ponto, você não tem nenhuma demanda intermediária.</p>
+                </div>
+
+                <div class="divider" />
+
+                <div>
+                    <h5>Insira uma nova demanda</h5>
+                    <ol>
+                        <li>Fique tranquilo, faça sua solicitação livremente(você paga apenas o preço do fornecedor designado)</li>
+                        <li>Em poucas horas voçe começará a receber informações sobre fornecedores com ofertas</li>
+                        <li>Escolha o melhor fornecedor que imediatamente começará a trabalhar</li>
+                    </ol>
+                    <div class="row">
+                        <form th:action="@{/servicos/user/new-order}" method="post">
+                            <div class="input-field col m8">
+                                <input id="nome_demanda" type="text" data-length="255" th:name="nome" required="true"/>
+                                <label for="nome_demanda">Nome da demanda</label>
+                            </div>
+                            <div class="input-field col m8">
+                                <select id="tipo" th:name="tipo" th:value="*{tipos}" required="true">
+                                    <option disabled="disabled" selected="selected">Escolha um tipo de serviço</option>
+                                    <option th:each="tipo : ${tipos}"
+                                            th:value="${tipo}" th:text="${tipo.nome}">Credit card</option>
+                                </select>
+                                <label for="tipo">Tipo</label>
+                            </div>
+                            <div class="input-field col m8">
+                                <input class="btn right" th:type="submit" th:value="Continuar"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
 
-            <div class="divider" />
 
-            <div>
-                <h4>Insira uma nova demanda</h4>
-                <ol>
-                    <li>Fique tranquilo, faça sua solicitação livremente(você paga apenas o preço do fornecedor designado)</li>
-                    <li>Em poucas horas voçe começará a receber informações sobre fornecedores com ofertas</li>
-                    <li>Escolha o melhor fornecedor que imediatamente começará a trabalhar</li>
-                </ol>
-                <form th:action="@{/new_service}" method="post">
-                    <div>
-                        <input th:name="nome" />
-                        <label>Nome da demanda</label>
-                    </div>
-                    <div>
-                        <select>
-                            <option>categoria</option>
-                        </select>
-                    </div>
-                </form>
+            <div id="minhas_ordens" class="col s12 m12">
+                <div>
+                    <h3>As minhas ordens</h3>
+                    <p>Neste momento, você não está trabalhando em nenhum projeto.</p>
+
+                    <a class="btn" th:href="@{/servicos/show}">Encontrar Projeto</a>
+                </div>
+
             </div>
+
         </div>
     </div>
 </th:block>

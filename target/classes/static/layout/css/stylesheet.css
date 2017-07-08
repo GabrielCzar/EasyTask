@@ -1,29 +1,23 @@
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
+/* padrao */
+body { display: flex; min-height: 100vh; flex-direction: column; }
 
-main {
-    flex: 1 0 auto !important;
-}
+main { flex: 1 0 auto !important; }
 
-.distance {
-    margin-top: 10% !important;
-}
+/* ids */
 
-.bg_gray {
-    background-color: #f6f6f6;
-}
+#fform_entrar{ margin-top: 20px; }
 
-#fform_entrar{
-    margin-top: 20px;
-}
+/* classes */
+.distance { margin-top: 10% !important; }
 
-.error {
-    color: #f2dede !important;
-}
+.distance-min { margin-top: 10px !important; }
 
-.tabs .indicator {
-    background-color: #4db6ac !important;
-}
+.bg_gray { background-color: #f6f6f6; }
+
+.error { color: #f2dede !important; }
+
+.tabs .indicator { background-color: #4db6ac !important; }
+
+.carousel.carousel-slider.initialized { min-height: 60vh !important; }
+
+.alert { padding: 10px 10px 10px 10px; width: 100%; height: 100%; border-radius: 5px; }

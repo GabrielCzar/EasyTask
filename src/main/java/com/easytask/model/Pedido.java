@@ -1,11 +1,14 @@
 package com.easytask.model;
 
+import com.easytask.model.enumeracoes.Status;
+import com.sun.istack.internal.Nullable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -21,24 +24,29 @@ public class Pedido {
     @JoinColumn(name = "id_usuario", referencedColumnName = "username")
     private Usuario usuario;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Servico> servicos;
+    @OneToOne
+    private Servico servico;
 
-    @NotNull
     @NumberFormat(pattern = "#,##0.00")
     private BigDecimal valor;
 
     @NumberFormat(pattern = "#,##0.00")
     private BigDecimal valor_estimado;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
-    private Date data_inicio;
+    @Nullable
+    private Integer prazo;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
-    private Date previsao_fim;
+    private Date dataInicio;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
-    private Date data_fim;
+    private Date previsaoFim;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+    private Date dataFim;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     public Long getId() {
         return id;
@@ -56,35 +64,60 @@ public class Pedido {
         this.valor = valor;
     }
 
-    public List<Servico> getServicos() {
-        return servicos;
+    public Servico getServicos() {
+        return servico;
     }
 
-    public void setServicos(List<Servico> servicos) {
-        this.servicos = servicos;
+    public void setServicos(Servico servico) { this.servico = servico; }
+
+    public String getDataInicio() {
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        return fmt.format(dataInicio);
     }
 
-    public Date getData_inicio() {
-        return data_inicio;
+    public void setDataInicio(Date data_inicio) {
+        this.dataInicio = data_inicio;
     }
 
-    public void setData_inicio(Date data_inicio) {
-        this.data_inicio = data_inicio;
-    }
-
-    public Date getPrevisao_fim() {
-        return previsao_fim;
+    public String getPrevisaoFim() {
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        return fmt.format(previsaoFim);
     }
 
     public void setPrevisao_fim(Date previsao_fim) {
-        this.previsao_fim = previsao_fim;
+        this.previsaoFim = previsaoFim;
     }
 
-    public Date getData_fim() {
-        return data_fim;
+    public String getDataFim() {
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        return fmt.format(dataFim);
     }
 
-    public void setData_fim(Date data_fim) {
-        this.data_fim = data_fim;
+    public void setData_fim(Date dataFim) {
+        this.dataFim = dataFim;
+    }
+
+    public BigDecimal getValor_estimado() {
+        return valor_estimado;
+    }
+
+    public void setValor_estimado(BigDecimal valor_estimado) {
+        this.valor_estimado = valor_estimado;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Integer getPrazo() {
+        return prazo;
+    }
+
+    public void setPrazo(Integer prazo) {
+        this.prazo = prazo;
     }
 }

@@ -26,10 +26,10 @@ public class Servico {
     @Enumerated(EnumType.STRING)
     private TipoServico tipo;
 
-    @ElementCollection(targetClass = CategoriaServico.class)
     @Enumerated(EnumType.STRING)
-    @Column(name = "categorias")
-    private Set<CategoriaServico> categorias;
+    private CategoriaServico categoria;
+
+    private String subcategoria;
 
     @NotBlank
     private String atividade;
@@ -44,19 +44,19 @@ public class Servico {
 
     public Servico () {}
 
-    public Servico (String nome, TipoServico tipo, Set<CategoriaServico> categorias, String atividade, String descricao) {
+    public Servico (String nome, TipoServico tipo, CategoriaServico categoria, String atividade, String descricao) {
         this.nome = nome;
         this.tipo = tipo;
-        this.categorias = categorias;
+        this.categoria = categoria;
         this.atividade = atividade;
         this.descricao = descricao;
     }
 
-    public Servico (Long id, String nome, TipoServico tipo, Set<CategoriaServico> categorias, String atividade, String descricao) {
+    public Servico (Long id, String nome, TipoServico tipo, CategoriaServico categoria, String atividade, String descricao) {
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;
-        this.categorias = categorias;
+        this.categoria = categoria;
         this.atividade = atividade;
         this.descricao = descricao;
     }
@@ -85,11 +85,9 @@ public class Servico {
         this.tipo = tipo;
     }
 
-    public Set<CategoriaServico> getCategorias() { return categorias; }
+    public CategoriaServico getCategoria() { return categoria; }
 
-    public void addCategoria(CategoriaServico categoria) { categorias.add(categoria); }
-
-    public void remCategoria(CategoriaServico categoria) { categorias.remove(categoria); }
+    public void setCategoria(CategoriaServico categoria) { this.categoria = categoria; }
 
     public String getAtividade() {
         return atividade;

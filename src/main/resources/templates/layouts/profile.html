@@ -57,7 +57,7 @@
                     </span>
                 </a>
 
-                <a class='dropdown-button btn btn-flat btn-large' th:href='@{/home}'
+                <a class='dropdown-button btn btn-flat btn-large' th:href='@{/servicos/user}'
                    data-activates='dropdown_user_account'>
                     <span class="left" th:text="${#authentication.name}"></span>
                     <i class="material-icons right">account_circle</i>
@@ -68,7 +68,7 @@
                 </ul>
 
                 <ul id='dropdown_user_account' class='dropdown-content'>
-                    <li><a class="black-text" th:href="@{/home}"><i class="material-icons black-text">home</i>Visão Geral</a></li>
+                    <li><a class="black-text" th:href="@{/servicos/user}"><i class="material-icons black-text">home</i>Visão Geral</a></li>
                     <li><a class="black-text" th:href='@{/user}'><i class="material-icons black-text">person_outline</i>Editar Perfil</a></li>
                     <li><a class="black-text" th:href="@{/logout}"><i class="material-icons black-text">exit_to_app</i>Sair</a></li>
                 </ul>
@@ -108,6 +108,7 @@
 </footer>
 
 <script th:src="@{/layout/js/jquery.min.js}"></script>
+<script th:src="@{/layout/js/jquery.masknumber.min.js}"></script>
 <script th:src="@{/layout/js/materialize.min.js}"></script>
 <script th:src="@{/layout/js/angular.min.js}"></script>
 <script th:src="@{/layout/js/script.js}"></script>
