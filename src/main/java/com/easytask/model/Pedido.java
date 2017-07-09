@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.Period;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "pedidos")
 public class Pedido {
@@ -24,6 +25,9 @@ public class Pedido {
 
     @ManyToOne @JoinColumn(name = "username", referencedColumnName = "username")
     private Usuario usuario;
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, targetEntity = Usuario.class)
+    private List<Usuario> candidatos;
 
     @OneToOne
     private Servico servico;
@@ -155,6 +159,22 @@ public class Pedido {
 
     public void setPrazo(Integer prazo) {
         this.prazo = prazo;
+    }
+
+    public List<Usuario> getCandidatos() {
+        return candidatos;
+    }
+
+    public void setCandidatos(List<Usuario> cadidatos) {
+        this.candidatos = cadidatos;
+    }
+
+    public void addCandidato(Usuario usuario) {
+        candidatos.add(usuario);
+    }
+
+    public void remCandidato(Usuario usuario) {
+        this.candidatos.remove(usuario);
     }
 
     @Override

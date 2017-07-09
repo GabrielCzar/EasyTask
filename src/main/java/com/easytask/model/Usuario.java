@@ -231,4 +231,9 @@ public class Usuario implements UserDetails {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Usuario: \nNome: %s\nUsername: %s\nEmail: %s", nome, username, email);
+    }
 }

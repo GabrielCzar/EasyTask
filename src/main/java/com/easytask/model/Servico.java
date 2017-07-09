@@ -22,9 +22,6 @@ public class Servico {
     @Enumerated(EnumType.STRING)
     private CategoriaServico categoria;
 
-    //falta implementar
-    private String subcategoria;
-
     @NotBlank
     private String atividade;
 
@@ -72,14 +69,6 @@ public class Servico {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public String getSubcategoria() {
-        return subcategoria;
-    }
-
-    public void setSubcategoria(String subcategoria) {
-        this.subcategoria = subcategoria;
     }
 
     public Usuario getProfissional() {

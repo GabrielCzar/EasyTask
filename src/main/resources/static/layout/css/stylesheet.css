@@ -66,3 +66,16 @@ input[type=range] + .thumb.active .value {
     border-left: 0px !important;
     border-bottom: 5px solid #2196f3 !important;
 }
+
+.input-field input:focus + label {
+    color: #2196f3 !important;
+}
+/* label underline focus color */
+.row .input-field input:focus {
+    border-bottom: 1px solid #2196f3 !important;
+    box-shadow: 0 1px 0 0 #2196f3 !important
+}
+
+i.prefix.active {
+    color: #2196f3 !important;
+}

@@ -52,10 +52,6 @@
                             <strong class="right right-align" th:text="${pedido.servico.categoria.nome}"></strong>
                         </p>
 
-                        <p>Subcategoria
-                            <strong class="right right-align" th:text="${pedido.servico.categoria.nome}"></strong>
-                        </p>
-
                         <div class="distance-max">
 
                             <a class="waves-effect waves-light btn blue darken-2 col m12 s12" href="#cancelarPedido">Cancelar Pedido</a>
@@ -74,6 +70,26 @@
                             </div>
                         </div>
                     </blockquote>
+                </div>
+            </div>
+
+            <div id="candidatos">
+                <div class="col m12 ">
+                    <p class="flow-text center" th:unless="${pedido.candidatos}">
+                        Aqui você vai ver novos candidatos e suas propostas.
+                    </p>
+
+                    <table th:if="${pedido.candidatos}" class="highlight">
+                        <tr th:each="candidato, pos : ${pedido.candidatos}">
+                            <th th:text="${pos.count}"></th>
+                            <th>
+                                <a th:href="@{'/user/' + ${candidato.username}/}" th:text="${candidato.nome}"></a>
+                            </th>
+
+                            <th th:text="${candidato.email}"></th>
+
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

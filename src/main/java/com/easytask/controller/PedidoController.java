@@ -24,7 +24,8 @@ public class PedidoController {
 
     @GetMapping("/{id}")
     public ModelAndView pedidosShow (@PathVariable Long id, HashMap<String, Object> map) {
-        map.put("pedido", pedidoRepository.findOne(id));
+        Pedido pedido = pedidoRepository.findOne(id);
+        map.put("pedido", pedido);
         return new ModelAndView("pedidos/pedido", map);
     }
 

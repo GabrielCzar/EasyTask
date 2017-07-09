@@ -27,10 +27,10 @@
 
             <ul id="tabs-swipe-demo"  class="tabs">
                 <li class="tab col m6">
-                    <a href="#form_login" class="teal-text tooltipped" data-position="top" data-delay="50"
+                    <a href="#form_login" class="teal-text tooltipped black-text" data-position="top" data-delay="50"
                        data-tooltip="Já possui uma conta? Entre">Entrar</a></li>
                 <li class="tab col m6">
-                    <a href="#form_cadastro" class="teal-text tooltipped" data-position="top"
+                    <a href="#form_cadastro" class="teal-text tooltipped black-text" data-position="top"
                        data-delay="50" data-tooltip="Não possui uma conta? Cadastre-se">Cadastrar</a></li>
             </ul>
 
@@ -44,11 +44,11 @@
                     </div>
                     <div class="input-field col m8 offset-m2">
                         <i class="material-icons prefix">lock outline</i>
-                        <input name="password" id="password" type="password" class="validate" minlength="4" />
-                        <label for="password" data-error="O mínimo é 4 caracteres">Senha</label>
+                        <input name="password" id="ppassword" type="password" class="validate" minlength="4" />
+                        <label for="ppassword" data-error="O mínimo é 4 caracteres">Senha</label>
                     </div>
                     <div class="input-field col m8 offset-m2 s12">
-                        <button class="waves-effect waves-light btn" type="submit">
+                        <button class="waves-effect waves-light btn blue" type="submit">
                             Entrar <i class="material-icons right hide-on-small-only">send</i>
                         </button>
                         <a class="right" href="#modal_forgetpass">Esqueceu a senha?</a>
@@ -64,8 +64,6 @@
                                 <i class="material-icons prefix">email</i>
 
                                 <input name="email" id="emailfp" type="email" class="validate" required="required" />
-
-                                <input id="emailfp" type="email" class="validate" required="required" />
 
                                 <label for="emailfp" data-error="email inválido" data-success="email válido">Email</label>
                             </div>
@@ -97,7 +95,7 @@
                     <div class="input-field col m8 offset-m2 s12">
                         <i class="material-icons prefix">chrome_reader_mode</i>
                         <input name="cpf" id="cpf" type="text" class="validate" required="required" />
-                        <label for="cpf" data-error="cpf inválido" data-success="nome válido">CPF</label>
+                        <label for="cpf" data-error="cpf inválido" data-success="cpf válido">CPF</label>
                     </div>
                     <div class="input-field col m8 offset-m2 s12">
                         <i class="material-icons prefix">email</i>
@@ -121,8 +119,8 @@
                         <label for="rpassword" data-error="As senhas são diferentes">Confirme a senha</label>
                     </div>
                     <div class="input-field col m8 offset-m2 s12">
-                        <input class="btn" type="submit" value="Cadastrar" />
-                        <input class="btn" type="reset" value="Limpar"  />
+                        <input class="btn blue" type="submit" value="Cadastrar" />
+                        <input class="btn btn-flat" type="reset" value="Limpar"  />
                     </div>
                 </form>
             </fieldset>
