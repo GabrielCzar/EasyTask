@@ -5,11 +5,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Entity(name = "pedidos")
 public class Pedido {
@@ -26,10 +24,10 @@ public class Pedido {
     @OneToOne
     private Servico servico;
 
-    @NumberFormat(pattern = "#,##0.00")
+    @NumberFormat(pattern = "#,##")
     private BigDecimal valor;
 
-    @NumberFormat(pattern = "#,##0.00")
+    @NumberFormat(pattern = "#,##")
     private BigDecimal valor_estimado;
 
     private Integer prazo;
@@ -117,5 +115,36 @@ public class Pedido {
 
     public void setPrazo(Integer prazo) {
         this.prazo = prazo;
+    }
+
+    public Servico getServico() {
+        return servico;
+    }
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
+    }
+
+    public void setPrevisaoFim(Date previsaoFim) {
+        this.previsaoFim = previsaoFim;
+    }
+
+    public void setDataFim(Date dataFim) {
+        this.dataFim = dataFim;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Pedido: \nPrazo %d \nValor Estimado %f",
+                    prazo, valor_estimado);
+
     }
 }

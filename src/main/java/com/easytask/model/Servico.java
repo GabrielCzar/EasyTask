@@ -28,6 +28,7 @@ public class Servico {
     @Enumerated(EnumType.STRING)
     private CategoriaServico categoria;
 
+    //falta implementar
     private String subcategoria;
 
     @NotBlank
@@ -39,25 +40,6 @@ public class Servico {
     @OneToOne
     @JoinColumn(name = "profissional_do_servico")
     private Usuario profissional;
-
-    public Servico () {}
-
-    public Servico (String nome, TipoServico tipo, CategoriaServico categoria, String atividade, String descricao) {
-        this.nome = nome;
-        this.tipo = tipo;
-        this.categoria = categoria;
-        this.atividade = atividade;
-        this.descricao = descricao;
-    }
-
-    public Servico (Long id, String nome, TipoServico tipo, CategoriaServico categoria, String atividade, String descricao) {
-        this.id = id;
-        this.nome = nome;
-        this.tipo = tipo;
-        this.categoria = categoria;
-        this.atividade = atividade;
-        this.descricao = descricao;
-    }
 
     public Long getId() {
         return id;
@@ -101,5 +83,11 @@ public class Servico {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Servico: \nNome: %s \nTipo: %s \nCategoria: %s \nAtividade: %s \nDescricao: %s \n",
+                nome, tipo.getNome(), categoria.getNome(), atividade, descricao);
     }
 }

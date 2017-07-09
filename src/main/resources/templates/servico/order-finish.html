@@ -8,14 +8,14 @@
             <div class="container">
                 <h4>Inserir demanda</h4>
 
-                <form th:action="@{/servicos/user/new-order}" method="post">
+                <form th:action="@{/servicos/user/finish-order}" method="post">
                     <div class="input-field col m8">
-                        <input id="nome_demanda" type="text" data-length="255" th:name="nome"
+                        <input id="nome_demanda" type="text" data-length="255" name="nome"
                                th:value="${servico.nome}" class="validate" required="required" />
                         <label for="nome_demanda" data-error="nome inválido">Nome da demanda</label>
                     </div>
                     <div class="input-field col m8">
-                        <select id="tipo" th:name="tipo" th:value="*{tipos}">
+                        <select id="tipo" name="tipo" th:value="*{tipos}">
                             <option selected="selected" th:each="tipo : ${tipos}"
                                     th:if="${tipo == servico.tipo}"
                                     th:value="${tipo}" th:text="${tipo.nome}">Tipo</option>
@@ -26,9 +26,9 @@
                         <label for="tipo">Tipo</label>
                     </div>
                     <div class="input-field col m8">
-                        <select id="categoria" th:name="categoria" th:value="*{categorias}">
+                        <select id="categoria" name="categoria" th:value="*{categorias}">
                             <option th:each="categoria : ${categorias}"
-                                    th:value="${tipo}"
+                                    th:value="${categoria}"
                                     th:text="${categoria.nome}">
                                 Categoria</option>
                         </select>
@@ -37,22 +37,24 @@
 
                     <div class="input-field col m8">
                         <input id="atv_demanda" type="text" th:name="atividade" required="required"/>
-                        <label for="atv_demanda">Objetivo da demanda</label>
+                        <label for="atv_demanda">Objetivo</label>
                     </div>
 
                     <div class="input-field col m8">
                         <input class="materialize-textarea" id="desc_demanda" type="text" th:name="descricao" required="required"/>
-                        <label for="desc_demanda">Descrição da demanda</label>
+                        <label for="desc_demanda">Descrição</label>
                     </div>
 
                     <div class="input-field col m8">
                         <input id="vest_demanda" type="number" step="any" th:name="valor_estimado"  />
-                        <label for="vest_demanda">Valor estimado da demanda</label>
+                        <label for="vest_demanda">Valor estimado</label>
                     </div>
 
                     <div class="input-field col m8">
-                        <input id="prazo" type="number" th:name="prazo" />
-                        <label for="prazo">Prazo da demanda em dias</label>
+                        <label>Prazo em dias</label><br />
+                        <p class="range-field">
+                            <input type="range" id="prazo" min="0" max="100" value="0" th:name="prazo"  />
+                        </p>
                     </div>
 
                     <div class="input-field col m8">
