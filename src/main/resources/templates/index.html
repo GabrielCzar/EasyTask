@@ -7,29 +7,50 @@
 
 
 <th:block layout:fragment="conteudo">
-    <div class="row">
+    <div class="row grey lighten-5">
         <div class="carousel carousel-slider">
-            <div class="carousel-fixed-item center x-opacidade">
-                <h1>
+            <div class="carousel-fixed-item center x-opacidade x-full responsive-text">
+                <h1 class="col m12 s12">
                     <strong class="white-text">
                         Nós te ajudamos a contratar o melhor profissional para o serviço que você precisa.
                     </strong>
                 </h1>
+                <a class="btn btn-flat blue-text x-border-blue">Cadastre-se e começe a realizar seus pedidos</a>
             </div>
-            <a class="carousel-item" href="#one!"><img class="responsive-img" th:src="@{/layout/images/banners/banner_1.jpg}" /></a>
-            <a class="carousel-item" href="#two!"><img class="responsive-img" th:src="@{/layout/images/banners/banner_2.jpg}" /></a>
-            <a class="carousel-item" href="#three!"><img class="responsive-img" th:src="@{/layout/images/banners/banner_3.jpg}" /></a>
+            <div class="carousel-item" href="#one!"><img class="responsive-img" th:src="@{/layout/images/banners/banner_1.jpg}" /></div>
+            <div class="carousel-item" href="#two!"><img class="responsive-img" th:src="@{/layout/images/banners/banner_2.jpg}" /></div>
+            <div class="carousel-item" href="#three!"><img class="responsive-img" th:src="@{/layout/images/banners/banner_3.jpg}" /></div>
         </div>
 
-        <div class="container center flow-text">
-            <h4>Como funciona o EasyTask?</h4>
+        <div class="container center flow-text ">
+            <blockquote class="x-bloquote">
+               <h4>Como funciona o EasyTask?</h4>
+            </blockquote>
 
-            <p>
-                PASSO A PASSO BASICO
-                3 passos</p>
-            <a class="btn blue btn-large white-text">Cadastre-se e comece a realizar seus serviços</a>
+            <div class="col m4 s12">
+                <img th:src="@{/layout/images/how-work/1.png}" />
+                <strong>Conhecimento</strong>
+                <p>Responda algumas perguntas para facilitar encontrar os melhores profissionais para você</p>
+            </div>
+
+            <div class="col m4 s12">
+                <img th:src="@{/layout/images/how-work/2.png}" />
+                 <strong>Ofertas</strong>
+               <p>Dentro de algumas horas você reberá propostas pelos profissionais ou fornecedores</p>
+            </div>
+
+            <div class="col m4 s12">
+                <img th:src="@{/layout/images/how-work/3.png}" />
+                <strong>Comparação</strong>
+                <p>Você escolhe o melhor fornecedor que começará imediatamente a trabalhar</p>
+            </div>
+
+        </div>
+        <div class="col m12 s12 center">
+            <a class="btn btn-large blue white-text">Cadastre-se e comece a realizar seus serviços</a>
         </div>
     </div>
+
 </th:block>
 </body>
 </html>

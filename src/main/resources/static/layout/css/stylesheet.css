@@ -48,3 +48,21 @@ input[type=range] + .thumb.active .value {
 .x-opacidade {
     background-color: rgba(0, 0, 0, 0.6);
 }
+
+.x-border-blue {
+    border: 1px solid #2196f3 !important;
+}
+
+.x-full {
+    width: 100% !important;
+    height: 100% !important;
+    background-size: cover !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    z-index: 1 !important;
+}
+
+.x-bloquote-bottom {
+    border-left: 0px !important;
+    border-bottom: 5px solid #2196f3 !important;
+}
