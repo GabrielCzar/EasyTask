@@ -13,16 +13,10 @@ import java.util.Set;
 public class Servico {
     private static final long serialVersionUID = -3366643816768268993L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank
-    @NotNull(message = "Nome é obrigatório")
-    private String nome;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) @NotNull
     private TipoServico tipo;
 
     @Enumerated(EnumType.STRING)
@@ -37,9 +31,12 @@ public class Servico {
     @NotBlank
     private String descricao;
 
-    @OneToOne
-    @JoinColumn(name = "profissional_do_servico")
+    @OneToOne @JoinColumn(name = "profissional_do_servico")
     private Usuario profissional;
+
+    private String nome;
+
+    // ___________ GETTERS AND SETTERS _____________ss
 
     public Long getId() {
         return id;
@@ -47,14 +44,6 @@ public class Servico {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public TipoServico getTipo() {
@@ -85,9 +74,33 @@ public class Servico {
         this.descricao = descricao;
     }
 
+    public String getSubcategoria() {
+        return subcategoria;
+    }
+
+    public void setSubcategoria(String subcategoria) {
+        this.subcategoria = subcategoria;
+    }
+
+    public Usuario getProfissional() {
+        return profissional;
+    }
+
+    public void setProfissional(Usuario profissional) {
+        this.profissional = profissional;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     @Override
     public String toString() {
-        return String.format("Servico: \nNome: %s \nTipo: %s \nCategoria: %s \nAtividade: %s \nDescricao: %s \n",
-                nome, tipo.getNome(), categoria.getNome(), atividade, descricao);
+        return String.format("Servico: \nTipo: %s \nCategoria: %s \nAtividade: %s \nDescricao: %s \n",
+                 tipo.getNome(), categoria.getNome(), atividade, descricao);
     }
 }

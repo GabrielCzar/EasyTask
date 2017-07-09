@@ -13,38 +13,49 @@
             <div id="meus_pedidos" class="col m12 s12">
                 <div>
                     <h3>Minhas demandas ou pedidos</h3>
-                    <p>Nesta seção, você verá sua demanda e fornecedores que são essas demandas concorrentes submetido.
+                    <p th:if="${#lists.isEmpty(pedidos)}">Nesta seção, você verá sua demanda e fornecedores que são essas demandas concorrentes submetido.
                         Neste ponto, você não tem nenhuma demanda intermediária.</p>
+                    <table th:unless="${#lists.isEmpty(pedidos)}" class="highlight">
+                        <tr th:each="pedido : ${pedidos}">
+                            <th>
+                                <span th:text="${pedido.dataInicioOnly}"></span>
+                                <a th:href="@{'/pedidos/user/' + ${pedido.id}}" th:text="${#strings.capitalizeWords(pedido.nome)}"></a>
+                            </th>
+                            <th th:text="${pedido.status.descricao}"></th>
+                            <th th:text="${pedido.prazoDecorrido}"></th>
+                        </tr>
+                    </table>
                 </div>
 
-                <div class="divider" />
+                <div class="divider distance-min" />
 
-                <div>
+                <div class="row distance-min">
                     <h5>Insira uma nova demanda</h5>
                     <ol>
-                        <li>Fique tranquilo, faça sua solicitação livremente(você paga apenas o preço do fornecedor designado)</li>
-                        <li>Em poucas horas voçe começará a receber informações sobre fornecedores com ofertas</li>
+                        <li>Fique tranquilo, faça sua solicitação livremente (você paga apenas o preço do fornecedor designado)</li>
+                        <li>Em poucas horas você começará a receber informações sobre fornecedores com ofertas</li>
                         <li>Escolha o melhor fornecedor que imediatamente começará a trabalhar</li>
                     </ol>
-                    <div class="row">
+                    <div class="col m12 s12">
                         <form th:action="@{/servicos/user/new-order}" method="post">
-                            <div class="input-field col m8">
-                                <input id="nome_demanda" type="text" data-length="255" th:name="nome" required="true"/>
+                            <div class="input-field">
+                                <input id="nome_demanda" type="text" data-length="255" name="nome" required="true"/>
                                 <label for="nome_demanda">Nome da demanda</label>
                             </div>
-                            <div class="input-field col m8">
-                                <select id="tipo" th:name="tipo" th:value="*{tipos}" required="true">
+                            <div class="input-field">
+                                <select id="tipo" name="tipo" th:value="*{tipos}" required="true">
                                     <option disabled="disabled" selected="selected">Escolha um tipo de serviço</option>
                                     <option th:each="tipo : ${tipos}"
                                             th:value="${tipo}" th:text="${tipo.nome}">Credit card</option>
                                 </select>
                                 <label for="tipo">Tipo</label>
                             </div>
-                            <div class="input-field col m8">
-                                <input class="btn right" th:type="submit" th:value="Continuar"/>
+                            <div class="input-field">
+                                <input class="btn right blue" th:type="submit" th:value="Continuar"/>
                             </div>
                         </form>
                     </div>
+
                 </div>
             </div>
 
@@ -54,7 +65,7 @@
                     <h3>As minhas ordens</h3>
                     <p>Neste momento, você não está trabalhando em nenhum projeto.</p>
 
-                    <a class="btn" th:href="@{/servicos/show}">Encontrar Projeto</a>
+                    <a class="btn blue" th:href="@{/servicos/show}">Encontrar Projeto</a>
                 </div>
 
             </div>

@@ -12,11 +12,12 @@ import com.easytask.service.implementacao.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
-import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 
 @Controller
@@ -36,6 +37,7 @@ public class ServicosController {
     public ModelAndView servicosUser (HashMap<String, Object> map){
         map.put("tipos", TipoServico.values());
         map.put("categorias", CategoriaServico.values());
+        map.put("pedidos", pedidoRepository.findAllByStatusNot(Status.INATIVO));
         return new ModelAndView("servico/servico", map);
     }
 
@@ -51,11 +53,13 @@ public class ServicosController {
         Usuario usuario = usuarioService.findUserByUsername(auth.getName());
         pedido.setUsuario(usuario);
         pedido.setServico(servico);
-        pedido.setValor(pedido.getValor_estimado());
-        pedido.setStatus(Status.ATIVO);
+        pedido.setNome(servico.getNome());
+        pedido.setValor(pedido.getValorEstimado());
+        pedido.setDataInicio(new Date());
+        pedido.setStatus(Status.PENDENTE);
         servicoRepository.saveAndFlush(servico);
         pedidoRepository.save(pedido);
-        return servicosUser(new HashMap<>());
+        return new ModelAndView("redirect:/servicos/user");
     }
 
 }

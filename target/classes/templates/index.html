@@ -9,17 +9,25 @@
 <th:block layout:fragment="conteudo">
     <div class="row">
         <div class="carousel carousel-slider">
+            <div class="carousel-fixed-item center x-opacidade">
+                <h1>
+                    <strong class="white-text">
+                        Nós te ajudamos a contratar o melhor profissional para o serviço que você precisa.
+                    </strong>
+                </h1>
+            </div>
             <a class="carousel-item" href="#one!"><img class="responsive-img" th:src="@{/layout/images/banners/banner_1.jpg}" /></a>
             <a class="carousel-item" href="#two!"><img class="responsive-img" th:src="@{/layout/images/banners/banner_2.jpg}" /></a>
             <a class="carousel-item" href="#three!"><img class="responsive-img" th:src="@{/layout/images/banners/banner_3.jpg}" /></a>
         </div>
 
-        <div class="container center">
+        <div class="container center flow-text">
             <h4>Como funciona o EasyTask?</h4>
-            <p>Nós te ajudamos a contratar o melhor profissional para o serviço que você precisa.</p>
 
-            PASSO A PASSO BASICO
-            3 passos
+            <p>
+                PASSO A PASSO BASICO
+                3 passos</p>
+            <a class="btn blue btn-large white-text">Cadastre-se e comece a realizar seus serviços</a>
         </div>
     </div>
 </th:block>

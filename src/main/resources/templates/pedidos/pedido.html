@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/profile">
+<body>
+<th:block layout:fragment="conteudo">
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12">
+                <ul class="tabs distance-min">
+                    <li class="tab col s3"><a class="black-text" href="#info">Informações</a></li>
+                    <li class="tab col s3"><a class="black-text" href="#candidatos">Candidatos</a></li>
+                </ul>
+            </div>
+            <div id="info">
+                <div class="error" id="error_cancelar">
+
+                </div>
+
+                <div class="col s12 m7" >
+                    <h3 th:text="${pedido.nome}"></h3>
+
+                    <h5>Atividade</h5>
+                    <p th:text="${pedido.servico.atividade}"></p>
+
+                    <h5>Descrição</h5>
+                    <p th:text="${pedido.servico.descricao}"></p>
+
+                    <h5>Prazo Restante</h5>
+                    <p th:text="${pedido.prazoRestante}"></p>
+
+                    <!-- ANEXOS SE DER TEMPO DE FAZER -->
+                </div>
+                <div class="col s12 m5">
+                    <blockquote class="x-bloquote">
+                        <h5>Resumo do Pedido</h5>
+
+                        <p>Status
+                            <strong class="right right-align" th:text="${pedido.status.descricao}"></strong>
+                        </p>
+
+                        <p>Estimativa de Preço
+                            <strong class="right right-align" th:text="${pedido.valorEstimado}"></strong>
+                        </p>
+
+                        <p>Postado
+                            <strong class="right right-align" th:text="${pedido.dataInicio}"></strong>
+                        </p>
+
+                        <p>Categoria
+                            <strong class="right right-align" th:text="${pedido.servico.categoria.nome}"></strong>
+                        </p>
+
+                        <p>Subcategoria
+                            <strong class="right right-align" th:text="${pedido.servico.categoria.nome}"></strong>
+                        </p>
+
+                        <div class="distance-max">
+
+                            <a class="waves-effect waves-light btn blue darken-2 col m12 s12" href="#cancelarPedido">Cancelar Pedido</a>
+
+                            <!-- Modal Structure -->
+                            <div id="cancelarPedido" class="modal">
+                                <div class="modal-content">
+                                    <h4>Cancelar Pedido</h4>
+                                    <p>Você tem certeza que deseja cancelar esse pedido? </p>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <a th:href="@{'/pedidos/user/' + ${pedido.id} + '/delete'}"  class="left btn red darken-2">Apagar Pedido</a>
+                                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn blue">Cancelar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</th:block>
+</body>
+</html>
