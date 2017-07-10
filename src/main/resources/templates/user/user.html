@@ -11,37 +11,49 @@
             <div class="col s12 distance-min">
                 <ul class="tabs">
                     <li class="tab col s3"><a class="black-text" href="#editar_perfil">Editar Perfil</a></li>
-                    <li class="tab col s3"><a class="black-text" href="#altera_credenciais">Alterar Credenciais</a></li>
+                    <!--li class="tab col s3"><a class="black-text" href="#altera_credenciais">Alterar Credenciais</a></li>
                     <li class="tab col s3"><a class="black-text" href="#faturamento">Faturamento</a></li>
-                    <li class="tab col s3"><a class="black-text" href="#avaliacao">Avaliação</a></li>
+                    <li class="tab col s3"><a class="black-text" href="#avaliacao">Avaliação</a></li-->
                 </ul>
             </div>
             <div id="editar_perfil" class="col s12">
                 <form th:action="@{/user/edit}" method="post">
 
-                    <input name="username"  hidden="false"/>
-                    <input name="cpf" hidden="false" />
+                    <input name="username" th:value="${#authentication.name}" hidden="false"/>
 
-                    <fieldset>
-                        <div class="input-field col s8 offset-s2 offset-s2">
-                            <i class="material-icons prefix">person</i>
-                            <input name="nome" id="name" type="text" class="validate" required="required" />
-                            <label for="name" data-error="nome inválido" data-success="nome válido">Nome</label>
-                        </div>
+                    <div class="input-field col m12 s12">
+                        <i class="material-icons prefix">person</i>
+                        <input name="nome" id="name" type="text" class="validate" required="required" />
+                        <label for="name" data-error="nome inválido" data-success="nome válido">Nome</label>
+                    </div>
 
+                    <div class="input-field col m12 s12">
+                        <i class="material-icons prefix">call</i>
+                        <input name="telefone" id="telefone" type="tel" class="validate" />
+                        <label for="telefone" data-error="telefone inválido" data-success="telefone válido">Telefone</label>
+                    </div>
 
-                        <div class="input-field col s8 offset-s2 offset-s2">
-                            <i class="material-icons prefix">call</i>
-                            <input id="telefone" type="tel" class="validate" />
-                            <label for="telefone" data-error="telefone inválido" data-success="telefone válido">Telefone</label>
-                        </div>
-                    </fieldset>
+                    <div class="input-field col m12 s12">
+                        <i class="material-icons prefix">mail</i>
+                        <input name="email" id="email" type="email" class="validate" required="required" />
+                        <label for="email" data-error="nome inválido" data-success="nome válido">Email</label>
+                    </div>
+
+                    <div class="input-field col m12 s12 tooltipped" data-position="top" data-tooltip="Senha necessaria para alterar o usuario">
+                        <i class="material-icons prefix">lock</i>
+                        <input name="password" id="name" type="email" class="validate" required="required" />
+                        <label for="name" data-error="nome inválido" data-success="nome válido">Senha</label>
+                    </div>
+
+                    <div class="input-field">
+                        <button class="btn blue right">Enviar</button>
+                    </div>
                 </form>
 
             </div>
-            <div id="altera_credenciais" class="col s12">Test 2</div>
+            <!--div id="altera_credenciais" class="col s12">Test 2</div>
             <div id="faturamento" class="col s12">Test 3</div>
-            <div id="avaliacao" class="col s12">Test 4</div>
+            <div id="avaliacao" class="col s12">Test 4</div-->
 
         </div>
     </div>

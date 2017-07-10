@@ -27,6 +27,10 @@ $(() => {
     );
     $('select').material_select();
 
+
+    $('.tooltipped').tooltip({delay: 50});
+
+
     /* Funcoes alternativas */
     function autoplay() {
         $('.carousel').carousel('next');

@@ -26,8 +26,16 @@ public class UsuarioController {
     }
 
     @PostMapping("/edit")
-    public ModelAndView editUser (@ModelAttribute("usuario") Usuario usuario, ModelAndView mv) {
-        System.out.println("TENTANDO ALTERAR SO TESTE");
-        return mv;
+    public ModelAndView editUser (@ModelAttribute("usuario") Usuario usuario) {
+        Usuario aux = usuarioService.findUserByUsername(usuario.getUsername());
+        usuario.setPassword(usuario.getPassword());
+        if (aux.getPassword().equals(usuario.getPassword())) {
+            if (usuario.getEmail() != null) aux.setEmail(usuario.getEmail());
+            if (usuario.getNome() != null) aux.setNome(usuario.getNome());
+            if (usuario.getTelefone() != null) aux.setTelefone(usuario.getTelefone());
+            usuarioService.update(aux);
+            return new ModelAndView("redirect:/");
+        }
+        return new ModelAndView("/user/edit");
     }
 }
