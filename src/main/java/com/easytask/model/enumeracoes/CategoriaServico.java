@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum CategoriaServico {
-    DESENVOLVEDOR_WEB_FRONT_END("Desenvolvimento de Aplicações Web Front-End"),
-    DESENVOLVEDOR_WEB_BACK_END("Desenvolvimento de Aplicações Web Back-End"),
-    DESENVOLVEDOR_DEV_OPS("Desenvolvimento de Aplicações Dev-Ops"),
+    DESENVOLVEDOR_WEB_FRONT_END("Desenvolvimento de Aplicações Web (Front-End)"),
+    DESENVOLVEDOR_WEB_BACK_END("Desenvolvimento de Aplicações Web (Back-End)"),
+    DESENVOLVEDOR_DEV_OPS("Desenvolvimento de Aplicações Web (Dev-Ops)"),
     DESENVOLVEDOR_MOBILE("Desenvolvimento de Aplicações Móveis"),
     DESENVOLVEDOR_SOFTWARE("Desenvolvimento de Software"),
     DESENVOLVEDOR_DE_JOGOS("Desenvolvimento de Jogos"),

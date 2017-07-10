@@ -12,9 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
 
-/**
- * Created by gabriel on 23/06/17.
- */
 @Controller
 @RequestMapping("/pedidos/user")
 public class PedidoController {
@@ -34,5 +31,4 @@ public class PedidoController {
         pedidoRepository.delete(id);
         return new ModelAndView("redirect:/servicos/user");
     }
-
 }

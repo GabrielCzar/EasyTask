@@ -29,7 +29,7 @@ public class LoginAndHomeController {
     @RequestMapping("/login")
     public ModelAndView login (Authentication authentication) {
         if (authentication != null)
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:/servicos/user");
         return new ModelAndView("login");
     }
 
@@ -48,7 +48,9 @@ public class LoginAndHomeController {
     }
 
     @RequestMapping("/")
-    public ModelAndView index() {
+    public ModelAndView index(Authentication auth) {
+        if (auth != null)
+            return new ModelAndView("redirect:/servicos/user");
         return new ModelAndView("index");
     }
 

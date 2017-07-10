@@ -7,6 +7,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -25,38 +26,39 @@ public class Usuario implements UserDetails {
     @Size(message = "O username deve ter no minimo {min} caracteres", min = 4)
     private String username;
 
-    @Order
-    @NotBlank(message = "O Nome é obrigatório")
+    @Order @NotBlank(message = "O Nome é obrigatório")
     private String nome;
 
-    @Size(message = "O CPF deve ter {min} caracteres", min = 11)
-    @CPF(message = "O CPF é inválido")
-    @Column(unique = true)
+    @Column(unique = true) @CPF(message = "O CPF é inválido") @Size(message = "O CPF deve ter {min} caracteres", min = 11)
     private String cpf;
 
-    @NotNull(message = "O email é obrigatório")
-    @Column(unique = true)
-    @Email(message = "O email é inválido")
+    @Column(unique = true) @Email(message = "O email é inválido") @NotNull(message = "O email é obrigatório")
     private String email;
 
     //@Pattern(regexp = ".*[A-Za-z0-9]+.*", message = "A senha deve conter letras e números")
-    @NotNull(message = "A senha é obrigatoria")
-    @Size(min = 4)
+    @NotNull(message = "A senha é obrigatoria") @Size(min = 4)
     private String password;
 
     private String telefone;
 
     private String foto;
 
+    @Transient
+    private String url;
+
     private Boolean habilitado;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="papel_usuario",
-            joinColumns=@JoinColumn(name="usuario_id"),
-            inverseJoinColumns=@JoinColumn(name="papel_id"))
+    @ManyToMany(fetch = FetchType.EAGER) @JoinTable(name="papel_usuario", joinColumns=@JoinColumn(name="usuario_id"), inverseJoinColumns=@JoinColumn(name="papel_id"))
     private List<Papel> papeis;
 
     private Boolean hasProfissao;
+
+    private String profissao;
+
+    @OneToMany
+    private List<Avaliacao> avaliacoes;
+
+    // _____________ GETTERS AND SETTERS ______________
 
     public Boolean getHasProfissao() {
         return hasProfissao;
@@ -66,10 +68,6 @@ public class Usuario implements UserDetails {
         this.hasProfissao = hasProfissao;
     }
 
-    private String profissao;
-
-    @OneToMany
-    private List<Avaliacao> avaliacoes;
 
     public boolean hasProfissao () {
         return profissao != null;
@@ -114,10 +112,6 @@ public class Usuario implements UserDetails {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    @Transient
-    private String url;
-
 
     public String getCpf() {
         return cpf;
@@ -230,6 +224,10 @@ public class Usuario implements UserDetails {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public boolean temFoto() {
+        return !StringUtils.isEmpty(foto);
     }
 
     @Override

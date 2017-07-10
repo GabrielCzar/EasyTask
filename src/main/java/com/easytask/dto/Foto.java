@@ -1,7 +1,17 @@
 package com.easytask.dto;
 
-/**
- * Created by gabriel on 09/07/17.
- */
 public class Foto {
+    private String url;
+
+    public Foto(String url) {
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }

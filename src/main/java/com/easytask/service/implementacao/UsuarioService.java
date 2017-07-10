@@ -5,10 +5,13 @@ import com.easytask.model.Usuario;
 import com.easytask.repository.TokenRepository;
 import com.easytask.repository.UsuarioRepository;
 import com.easytask.service.IUsuarioService;
+import com.easytask.storage.FotoStorage;
+import com.easytask.storage.FotoStorageLocal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,6 +25,19 @@ public class UsuarioService implements IUsuarioService{
 
     @Autowired
     TokenRepository tokenRepository;
+
+    @Autowired
+    private FotoStorage fotoStorage;
+
+    public String salvarFoto(String username, MultipartFile foto) {
+        String nomeFoto = fotoStorage.salvar(foto);
+
+        Usuario usuario = usuarioRepository.findOne(username);
+        usuario.setFoto(nomeFoto);
+        usuarioRepository.save(usuario);
+
+        return fotoStorage.getUrl(nomeFoto);
+    }
 
     @Override
     public boolean add(Usuario usuario) {

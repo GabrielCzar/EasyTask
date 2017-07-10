@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/profile">
+<body>
+<th:block layout:fragment="conteudo">
+    <div class="container">
+        <div class="row">
+            <h1>Busca de Projetos</h1>
+            <p>Voce está na lista de pedidos.
+                Abaixo estão os contratos em vigor nos quais você pode responder e apresentar sua oferta.</p>
+            <table class="highlight">
+                <tr th:each="pedido : ${pedidos}">
+                    <th th:text="${pedido.nome}"></th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>
