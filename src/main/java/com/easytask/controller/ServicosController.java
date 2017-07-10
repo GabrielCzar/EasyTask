@@ -34,10 +34,10 @@ public class ServicosController {
     PedidoRepository pedidoRepository;
 
     @GetMapping
-    public ModelAndView servicosUser (HashMap<String, Object> map){
+    public ModelAndView servicosUser (Authentication auth, HashMap<String, Object> map){
         map.put("tipos", TipoServico.values());
         map.put("categorias", CategoriaServico.values());
-        map.put("pedidos", pedidoRepository.findAllByStatusNot(Status.INATIVO));
+        map.put("pedidos", pedidoRepository.findAllByStatusNotAndUsuario_Username(Status.INATIVO, auth.getName()));
         return new ModelAndView("servico/servico", map);
     }
 

@@ -2,6 +2,7 @@ package com.easytask.controller;
 
 import com.easytask.model.Pedido;
 import com.easytask.model.Usuario;
+import com.easytask.model.enumeracoes.CategoriaServico;
 import com.easytask.model.enumeracoes.Status;
 import com.easytask.repository.PedidoRepository;
 import com.easytask.service.implementacao.UsuarioService;
@@ -27,7 +28,8 @@ public class ProjetosController {
     @GetMapping("/show")
     public ModelAndView showProjetos(Authentication auth, HashMap<String, Object> map) {
         map.put("pedidos", pedidoRepository.findAllByStatusAndUsuario_UsernameNot(Status.PENDENTE, auth.getName()));
-        return new ModelAndView("pedidos/show-projetos");
+        map.put("categorias", CategoriaServico.values());
+        return new ModelAndView("pedidos/show-projetos", map);
     }
 
 }

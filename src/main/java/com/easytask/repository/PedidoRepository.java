@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
-    List<Pedido> findAllByStatusNot (Status status);
+    List<Pedido> findAllByStatusNotAndUsuario_Username (Status status, String username);
     List<Pedido> findAllByStatusAndUsuario_UsernameNot(Status status, String username);
     List<Pedido> findAllByStatusAndUsuario_UsernameNot(Status status, String username, Sort sort);
 }

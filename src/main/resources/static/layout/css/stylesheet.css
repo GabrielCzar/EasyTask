@@ -79,3 +79,7 @@ input[type=range] + .thumb.active .value {
 i.prefix.active {
     color: #2196f3 !important;
 }
+
+ul.dropdown-content.select-dropdown li span {
+    color: #2196f3;
+}
