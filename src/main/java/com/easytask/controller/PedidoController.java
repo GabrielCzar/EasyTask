@@ -1,9 +1,11 @@
 package com.easytask.controller;
 
 import com.easytask.model.Pedido;
+import com.easytask.repository.OfertaRepository;
 import com.easytask.repository.PedidoRepository;
 import com.easytask.repository.ServicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,7 @@ public class PedidoController {
     PedidoRepository pedidoRepository;
 
     @GetMapping("/{id}")
-    public ModelAndView pedidosShow (@PathVariable Long id, HashMap<String, Object> map) {
+    public ModelAndView pedidosShow (Authentication auth, @PathVariable Long id, HashMap<String, Object> map) {
         Pedido pedido = pedidoRepository.findOne(id);
         map.put("pedido", pedido);
         return new ModelAndView("pedidos/pedido", map);

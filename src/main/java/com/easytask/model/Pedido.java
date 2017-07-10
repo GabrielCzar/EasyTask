@@ -26,8 +26,8 @@ public class Pedido {
     @ManyToOne @JoinColumn(name = "username", referencedColumnName = "username")
     private Usuario usuario;
 
-    @OneToMany(cascade = {CascadeType.PERSIST}, targetEntity = Usuario.class)
-    private List<Usuario> candidatos;
+    @OneToMany(cascade = {CascadeType.DETACH}, targetEntity = Oferta.class)
+    private List<Oferta> ofertas;
 
     @OneToOne
     private Servico servico;
@@ -55,7 +55,19 @@ public class Pedido {
 
     private Integer prazo;
 
+    @OneToOne
+    private Usuario profissional;
+
     // ___________ GETTERS AND SETTERS _______________
+
+
+    public Usuario getProfissional() {
+        return profissional;
+    }
+
+    public void setProfissional(Usuario profissional) {
+        this.profissional = profissional;
+    }
 
     public String getDataInicio() {
         SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -76,8 +88,10 @@ public class Pedido {
         return fmt.format(previsaoFim);
     }
 
-    public void setPrevisaoFim(Date previsaoFim) {
-        this.previsaoFim = previsaoFim;
+    public void setPrevisaoFim() {
+        DateTime d1 = new DateTime(dataInicio);
+        DateTime d2 = d1.plusDays(prazo);
+        this.previsaoFim = d2.toDate();
     }
 
     public String getDataFim() {
@@ -161,20 +175,20 @@ public class Pedido {
         this.prazo = prazo;
     }
 
-    public List<Usuario> getCandidatos() {
-        return candidatos;
+    public List<Oferta> getOfertas() {
+        return ofertas;
     }
 
-    public void setCandidatos(List<Usuario> cadidatos) {
-        this.candidatos = cadidatos;
+    public void setOfertas(List<Oferta> ofertas) {
+        this.ofertas = ofertas;
     }
 
-    public void addCandidato(Usuario usuario) {
-        candidatos.add(usuario);
+    public void addOferta(Oferta oferta) {
+        ofertas.add(oferta);
     }
 
-    public void remCandidato(Usuario usuario) {
-        this.candidatos.remove(usuario);
+    public void remOferta(Oferta oferta) {
+        this.ofertas.remove(usuario);
     }
 
     @Override

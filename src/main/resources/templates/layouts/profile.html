@@ -23,32 +23,27 @@
 <nav class="nav-wrapper transparent">
     <div class="nav-wrapper">
         <div class="container">
-            <a href="#" data-activates="slide-out" class="button-collapse black-text"><i class="material-icons md-48">menu</i></a>
+            <a href="#" data-activates="slide-out" class="button-collapse black-text hide"><i class="material-icons md-48">menu</i></a>
 
             <a class="center" th:href="@{/}">
                 <img class="responsive-img hide-on-small-only" th:src="@{/layout/images/logo.png}" />
                 <img class="responsive-img hide-on-med-and-up" th:src="@{/layout/images/mini-logo.png}" />
             </a>
 
-            <ul id="slide-out" class="side-nav">
+            <ul id="slide-out" class="side-nav hide">
                 <li><div class="userView">
                     <div class="background">
                         <img src="images/office.jpg" />
                     </div>
-                    <a href="#!user"><img class="circle" src="images/yuna.jpg" /></a>
-                    <a href="#!name"><span class="white-text name">John Doe</span></a>
-                    <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-                </div></li>
-                <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-                <li><a href="#!">Second Link</a></li>
-                <li><div class="divider"></div></li>
-                <li><a class="subheader">Subheader</a></li>
-                <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+                        <a href="#!name"><span class="white-text name" ></span></a>
+                        <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                    </div>
+                </li>
             </ul>
 
 
-            <div class="right hide-on-med-and-down">
-                <a class='dropdown-button btn btn-flat btn-large' href='#'
+            <div class="right">
+                <a class='dropdown-button btn btn-flat btn-large hide' href='#'
                    data-activates='dropdown_user_notifications'>
                     <i class="material-icons left">notifications</i>
                     <span class='new badge right red' data-badge-caption="">
@@ -62,7 +57,7 @@
                     <i class="material-icons right">account_circle</i>
                 </a>
 
-                <ul id='dropdown_user_notifications' class='dropdown-content'>
+                <ul id='dropdown_user_notifications' class='dropdown-content hide'>
                     <li><a class="black-text">NOTIFICACOES</a></li>
                 </ul>
 
@@ -112,7 +107,7 @@
 <script th:src="@{/layout/js/angular.min.js}"></script>
 <script th:src="@{/layout/js/script.js}"></script>
 <script th:src="@{/layout/js/formularios.js}"></script>
-
+<script th:src="@{/layout/js/other.js}"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
