@@ -9,9 +9,20 @@
         <div class="row">
             <div class="col s12 m12">
                 <ul class="tabs distance-min">
-                    <li class="tab col s3"><a class="black-text" href="#info">Informações</a></li>
-                    <li class="tab col s3"><a class="black-text" href="#ofertas">Ofertas</a></li>
-                    <li class="tab col s3"><a class="black-text" href="#my-offer">Minha Oferta</a></li>
+                    <th:block th:if="${pedido.usuario.username == #authentication.name}">
+                        <li class="tab col s3"><a class="black-text" href="#info">Informações</a></li>
+                        <th:block th:unless="${pedido.status.descricao == 'Ativo'}">
+                            <li class="tab col s3"><a class="black-text" href="#ofertas">Ofertas</a></li>
+                        </th:block>
+                    </th:block>
+                    <th:block th:unless="${pedido.usuario.username == #authentication.name}">
+                        <li class="tab col s3"><a class="black-text" href="#info">Informações</a></li>
+                        <th:block th:unless="${pedido.status.descricao == 'Ativo'}">
+                            <li class="tab col s3"><a class="black-text" href="#ofertas">Ofertas</a></li>
+                            <li class="tab col s3"><a class="black-text" href="#my-offer">Minha Oferta</a></li>
+                        </th:block>
+                    </th:block>
+
                 </ul>
             </div>
             <div id="info">
@@ -41,23 +52,39 @@
                             <strong class="right right-align" th:text="${pedido.status.descricao}"></strong>
                         </p>
 
-                        <p>Estimativa de Preço
-                            <strong class="right right-align" th:text="${pedido.valorEstimado}"></strong>
+                        <p>
+                            <th:block th:if="${pedido.status.descricao == 'Ativo'}">
+                                Preço
+                                <strong class="right right-align" th:text="${pedido.valor}"></strong>
+                            </th:block>
+                            <th:block th:unless="${pedido.status.descricao == 'Ativo'}">
+                                Estimativa de Preço
+                                <strong class="right right-align" th:text="${pedido.valorEstimado}"></strong>
+                            </th:block>
                         </p>
 
-                        <p>Postado
+
+                        <p><th:block th:if="${pedido.status.descricao == 'Ativo'}">Data de Inicio</th:block>
+                            <th:block th:unless="${pedido.status.descricao == 'Ativo'}">Postado</th:block>
                             <strong class="right right-align" th:text="${pedido.dataInicio}"></strong>
                         </p>
 
                         <p>Categoria
                             <strong class="right right-align" th:text="${pedido.servico.categoria.nome}"></strong>
                         </p>
+                        <th:block th:if="${pedido.status.descricao == 'Ativo'}">
+                            <p class="flow-text">Profissional
+                                <i th:text="${pedido.profissional.nome}" class="right right-align"></i>
+                            </p>
+                        </th:block>
 
                         <th:block th:unless="${pedido.usuario.username == #authentication.name}">
                             <p class="flow-text">Financiador
                                 <i th:text="${pedido.usuario.nome}" class="right right-align"></i>
                             </p>
-                            <a href="#my-offer" class="waves-effect waves-light btn blue darken-2 col m12 s12">Apresentar Proposta</a>
+                            <th:block th:unless="${pedido.status.descricao == 'Ativo'}">
+                                <a href="#my-offer" class="waves-effect waves-light btn blue darken-2 col m12 s12">Apresentar Proposta</a>
+                            </th:block>
                         </th:block>
 
                         <div class="distance-max" th:if="${pedido.usuario.username == #authentication.name}">
@@ -80,63 +107,65 @@
                     </blockquote>
                 </div>
             </div>
+            <th:block th:unless="${pedido.status.descricao == 'Ativo'}">
+                <div id="ofertas">
+                    <div class="col m12 s12">
+                        <p class="flow-text center" th:if="${#lists.isEmpty(pedido.ofertas)}">
+                            Aqui você vai ver novas ofertas e suas propostas.
+                        </p>
 
-            <div id="ofertas">
-                <div class="col m12 s12">
-                    <p class="flow-text center" th:if="${#lists.isEmpty(pedido.ofertas)}">
-                        Aqui você vai ver novas ofertas e suas propostas.
-                    </p>
-
-                    <table th:if="${pedido.ofertas}" class="highlight">
-                        <thead>
+                        <table th:if="${pedido.ofertas}" class="highlight" >
+                            <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Profissional</th>
                                 <th>Valor</th>
                                 <th></th>
                             </tr>
-                        </thead>
-                        <tr th:each="oferta, pos : ${pedido.ofertas}">
-                            <th th:text="${pos.count}"></th>
-                            <th>
-                                <a th:href="@{'/user/' + ${oferta.usuario.username}/}" th:text="${oferta.usuario.nome}"></a>
-                            </th>
+                            </thead>
+                            <tr th:each="oferta, pos : ${pedido.ofertas}">
+                                <th th:text="${pos.count}"></th>
+                                <th>
+                                    <a th:href="@{'/user/' + ${oferta.usuario.username}/}" th:text="${oferta.usuario.nome}"></a>
+                                </th>
 
-                            <th th:text="${oferta.valor}"></th>
-
-                            <th id="opcoes_oferta">
-                                <form th:id="@{'form_aceitar' + ${pos.index}}">
-                                    <input th:name="oid" th:value="${oferta.id}" hidden="hidden"/>
-                                    <input th:name="pid" th:value="${pedido.id}" hidden="hidden"/>
-                                    <button th:id="@{'aceitar' + ${pos.index}}" class="btn btn-flat">Aceitar</button>
-                                </form>
-                                <form th:id="@{'form_recusar' + ${pos.index}}">
-                                    <input th:name="oid" th:value="${oferta.id}" hidden="hidden"/>
-                                    <input th:name="pid" th:value="${pedido.id}" hidden="hidden"/>
-                                    <button th:id="@{'recusar' + ${pos.index}}" class="btn btn-flat">Recusar</button>
-                                </form>
-                            </th>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
-            <div id="my-offer">
-                <div class="col m12 s12">
-                    <div th:unless="${pedido.usuario.username == #authentication.name}">
-                        <p id="message"></p>
-
-                        <form id="oferta" method="post">
-                            <input th:name="id" th:value="${pedido.id}" hidden="hidden" />
-                            <input th:name="username" th:value="${#authentication.name}" hidden="hidden" />
-                            <div class="input-field">
-                                <input id="#valor" type="number" step="any" name="valor" placeholder="valor" value="0"/>
-                            </div>
-                            <button id="btn_oferta" class="btn blue">Enviar oferta</button>
-                        </form>
+                                <th th:text="${oferta.valor}"></th>
+                                <th:block th:if="${pedido.usuario.username == #authentication.name}">
+                                    <th class="opcoes_oferta">
+                                        <form th:action="@{'/projetos/' + ${pedido.id} + '/oferta/' + ${oferta.id} + '/aceitar/' + ${#authentication.name}}" method="post">
+                                            <button class="btn btn-flat">Aceitar</button>
+                                        </form>
+                                    </th><th>
+                                    <form th:action="@{'/projetos/' + ${pedido.id} + '/oferta/' + ${oferta.id} + '/recusar/'}" method="post">
+                                        <button class="btn btn-flat">Recusar</button>
+                                    </form>
+                                </th>
+                                </th:block>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-            </div>
+                <th:block th:unless="${pedido.status.descricao == 'Ativo'}">
+                <div id="my-offer">
+                    <div class="col m12 s12">
+                        <div th:unless="${pedido.usuario.username == #authentication.name}">
+                            <p id="message"></p>
+
+                            <form id="oferta" method="post">
+                                <input th:name="id" th:value="${pedido.id}" hidden="hidden" />
+                                <input th:name="username" th:value="${#authentication.name}" hidden="hidden" />
+                                <div class="input-field">
+                                    <input id="#valor" type="number" step="any" name="valor" placeholder="valor" value="0"/>
+                                </div>
+                                <button id="btn_oferta" class="btn blue">Enviar oferta</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </th:block>
+            </th:block>
+
+
         </div>
     </div>
 

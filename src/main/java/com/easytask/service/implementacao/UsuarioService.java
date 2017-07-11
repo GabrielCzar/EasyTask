@@ -1,20 +1,14 @@
 package com.easytask.service.implementacao;
 
-import com.easytask.model.Token;
 import com.easytask.model.Usuario;
-import com.easytask.repository.TokenRepository;
 import com.easytask.repository.UsuarioRepository;
 import com.easytask.service.IUsuarioService;
-import com.easytask.storage.FotoStorage;
-import com.easytask.storage.FotoStorageLocal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @Transactional
@@ -22,22 +16,6 @@ public class UsuarioService implements IUsuarioService{
 
     @Autowired
     UsuarioRepository usuarioRepository;
-
-    @Autowired
-    TokenRepository tokenRepository;
-
-    @Autowired
-    private FotoStorage fotoStorage;
-
-    public String salvarFoto(String username, MultipartFile foto) {
-        String nomeFoto = fotoStorage.salvar(foto);
-
-        Usuario usuario = usuarioRepository.findOne(username);
-        usuario.setFoto(nomeFoto);
-        usuarioRepository.save(usuario);
-
-        return fotoStorage.getUrl(nomeFoto);
-    }
 
     @Override
     public boolean add(Usuario usuario) {
@@ -97,37 +75,6 @@ public class UsuarioService implements IUsuarioService{
         return usuarioRepository.findUsuarioByEmail(email);
     }
 
-    @Override
-    public void recoverPassword(String email) {
-        Usuario usuario = usuarioRepository.findUsuarioByEmail(email);
-        if (usuario == null)
-            return;
-            Token token = tokenRepository.findByUsuario(usuario);
-            if (token == null) {
-                token = new Token();
-
-                token.setUsuario(usuario);
-
-                do {
-                    token.setToken(UUID.randomUUID().toString());
-                } while (tokenRepository.exists(token.getToken()));
-
-                tokenRepository.save(token);
-            }
-
-            //emailService.emailRecuperacaoSenha(token);
-
-    }
-
-    @Override
-    public void newPassword(Token token, String password) {
-        if (token != null) {
-            Usuario usuario = token.getUsuario();
-            usuario.setHashSenha(password);
-            usuarioRepository.save(usuario);
-            tokenRepository.delete(token);
-        }
-    }
 
     @Override
     public boolean enableUser(String username, boolean enable) {

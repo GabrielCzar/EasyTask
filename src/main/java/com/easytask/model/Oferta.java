@@ -1,6 +1,5 @@
 package com.easytask.model;
 
-import org.hibernate.ObjectDeletedException;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;

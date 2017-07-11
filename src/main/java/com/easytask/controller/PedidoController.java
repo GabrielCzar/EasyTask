@@ -1,18 +1,17 @@
 package com.easytask.controller;
 
-import com.easytask.model.Pedido;
-import com.easytask.repository.OfertaRepository;
-import com.easytask.repository.PedidoRepository;
-import com.easytask.repository.ServicoRepository;
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.awt.event.MouseEvent;
-import java.util.HashMap;
+import com.easytask.model.Pedido;
+import com.easytask.repository.PedidoRepository;
 
 @Controller
 @RequestMapping("/pedidos/user")

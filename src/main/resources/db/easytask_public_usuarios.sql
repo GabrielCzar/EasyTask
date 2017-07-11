@@ -1,0 +1,3 @@
+INSERT INTO public.usuarios (username, cpf, email, habilitado, nome, password, telefone) VALUES ('gabriel', '062.562.583-80', 'gabrielcesar.a.l@gmail.com', true, 'Gabriel', '$2a$10$mpaTZczdb1MI7jAC3H0zkePfM49mCPM4Ojm70oUvNX723Mi0iGDoi', null);
+INSERT INTO public.usuarios (username, cpf, email, habilitado, nome, password, telefone) VALUES ('cesar', '969.633.437-05', 'cesar@cesar.com', true, 'Cesar', '$2a$10$2xf3mhx1LCax2ma6sufdV.0NvvOc9DnJK3EiPkI0VjtS296u0wfYC', null);
+INSERT INTO public.usuarios (username, cpf, email, habilitado, nome, password, telefone) VALUES ('lima', '590.443.459-66', 'lima@lima.com', true, 'lima', '$2a$10$ux1kxulVtNsslAV5Fcif9eqXJbEH8.5/Ix3KxGemjlrhGV0OZFMp2', null);

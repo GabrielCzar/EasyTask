@@ -1,7 +1,6 @@
 package com.easytask.model;
 
 import com.easytask.model.enumeracoes.Status;
-import org.hibernate.internal.util.compare.CalendarComparator;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
@@ -12,14 +11,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.time.Period;
 import java.util.Date;
 import java.util.List;
 
 @Entity(name = "pedidos")
 public class Pedido {
-    private static final long serialVersionUID = 330777716768268993L;
-
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
@@ -89,9 +85,7 @@ public class Pedido {
     }
 
     public void setPrevisaoFim() {
-        DateTime d1 = new DateTime(dataInicio);
-        DateTime d2 = d1.plusDays(prazo);
-        this.previsaoFim = d2.toDate();
+        this.previsaoFim = new DateTime(dataInicio).plusDays(prazo).toDate();
     }
 
     public String getDataFim() {
@@ -188,7 +182,7 @@ public class Pedido {
     }
 
     public void remOferta(Oferta oferta) {
-        this.ofertas.remove(usuario);
+        this.ofertas.remove(oferta);
     }
 
     @Override

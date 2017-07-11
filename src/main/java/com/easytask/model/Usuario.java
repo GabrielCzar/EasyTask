@@ -11,7 +11,6 @@ import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.List;
@@ -41,8 +40,6 @@ public class Usuario implements UserDetails {
 
     private String telefone;
 
-    private String foto;
-
     @Transient
     private String url;
 
@@ -51,43 +48,7 @@ public class Usuario implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER) @JoinTable(name="papel_usuario", joinColumns=@JoinColumn(name="usuario_id"), inverseJoinColumns=@JoinColumn(name="papel_id"))
     private List<Papel> papeis;
 
-    private Boolean hasProfissao;
-
-    private String profissao;
-
-    @OneToMany
-    private List<Avaliacao> avaliacoes;
-
     // _____________ GETTERS AND SETTERS ______________
-
-    public Boolean getHasProfissao() {
-        return hasProfissao;
-    }
-
-    public void setHasProfissao(Boolean hasProfissao) {
-        this.hasProfissao = hasProfissao;
-    }
-
-
-    public boolean hasProfissao () {
-        return profissao != null;
-    }
-
-    public String getProfissao() {
-        return profissao;
-    }
-
-    public void setProfissao(String profissao) {
-        this.profissao = profissao;
-    }
-
-    public List<Avaliacao> getAvaliacoes() {
-        return avaliacoes;
-    }
-
-    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
-        this.avaliacoes = avaliacoes;
-    }
 
     public boolean isHabilitado() {
         return habilitado;
@@ -110,7 +71,8 @@ public class Usuario implements UserDetails {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if (nome != null)
+            this.nome = nome;
     }
 
     public String getCpf() {
@@ -126,7 +88,8 @@ public class Usuario implements UserDetails {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if (email != null)
+           this.email = email;
     }
 
     public String getTelefone() {
@@ -134,15 +97,8 @@ public class Usuario implements UserDetails {
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
+        if (telefone != null)
+            this.telefone = telefone;
     }
 
     public void setHashSenha(String senha) {
@@ -226,8 +182,10 @@ public class Usuario implements UserDetails {
         this.url = url;
     }
 
-    public boolean temFoto() {
-        return !StringUtils.isEmpty(foto);
+    public void merge(String nome, String email, String telefone){
+        setNome(nome);
+        setTelefone(telefone);
+        setEmail(email);
     }
 
     @Override

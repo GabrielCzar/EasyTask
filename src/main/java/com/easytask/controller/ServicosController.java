@@ -38,6 +38,7 @@ public class ServicosController {
         map.put("tipos", TipoServico.values());
         map.put("categorias", CategoriaServico.values());
         map.put("pedidos", pedidoRepository.findAllByStatusNotAndUsuario_Username(Status.INATIVO, auth.getName()));
+        map.put("ordens", pedidoRepository.findAllByProfissionalUsername(auth.getName()));
         return new ModelAndView("servico/servico", map);
     }
 

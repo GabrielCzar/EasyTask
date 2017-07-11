@@ -1,7 +1,6 @@
 package com.easytask.controller;
 
-import com.easytask.model.Usuario;
-import com.easytask.service.implementacao.UsuarioService;
+import com.easytask.service.implementacao.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -10,32 +9,55 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import javax.swing.plaf.PanelUI;
-import javax.validation.Valid;
+
+import com.easytask.model.Usuario;
+import com.easytask.service.implementacao.UsuarioService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.jws.WebParam;
+import java.util.HashMap;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UsuarioController {
+    private static final String MENSAGEM = "message", COR = "cor";
 
     @Autowired
     UsuarioService usuarioService;
 
+    @Autowired
+    SecurityService securityService;
+
     @GetMapping
-    public ModelAndView user () {
-        return new ModelAndView("user/user");
+    public ModelAndView user (Authentication auth, HashMap<String, Object> map) {
+        map.put("usuario", usuarioService.findUserByUsername(auth.getName()));
+        return new ModelAndView("user/user", map);
     }
 
-    @PostMapping("/edit")
-    public ModelAndView editUser (@ModelAttribute("usuario") Usuario usuario) {
+    @PostMapping("/edit/basic")
+    public ModelAndView editUser (Usuario usuario, RedirectAttributes attributes) {
         Usuario aux = usuarioService.findUserByUsername(usuario.getUsername());
-        usuario.setPassword(usuario.getPassword());
-        if (aux.getPassword().equals(usuario.getPassword())) {
-            if (usuario.getEmail() != null) aux.setEmail(usuario.getEmail());
-            if (usuario.getNome() != null) aux.setNome(usuario.getNome());
-            if (usuario.getTelefone() != null) aux.setTelefone(usuario.getTelefone());
-            usuarioService.update(aux);
-            return new ModelAndView("redirect:/");
+        aux.merge(usuario.getNome(), usuario.getEmail(), usuario.getTelefone());
+        usuarioService.update(aux);
+        attributes.addFlashAttribute(MENSAGEM, "Seus dados foram atualizados com sucesso!");
+        attributes.addFlashAttribute(COR, "green");
+        return new ModelAndView("redirect:/user");
+    }
+
+    @PostMapping("/edit/hard")
+    public ModelAndView editUserPass(String username, String password, String cpassword, String oldpassword, RedirectAttributes redirect) {
+        if (password.equals(cpassword) &&
+                securityService.reAutenticar(username, oldpassword)) {
+            Usuario usuario = usuarioService.findUserByUsername(username);
+            usuario.setHashSenha(password);
+            usuarioService.update(usuario);
+            securityService.reAutenticar(username, password);
+            redirect.addFlashAttribute(MENSAGEM, "Senha alterada!");
+            redirect.addFlashAttribute(COR, "green");
         }
-        return new ModelAndView("/user/edit");
+        redirect.addFlashAttribute(MENSAGEM, "Não foi possivel alterar a senha!");
+        redirect.addFlashAttribute(COR, "red");
+
+        return new ModelAndView("redirect:/user");
     }
 }

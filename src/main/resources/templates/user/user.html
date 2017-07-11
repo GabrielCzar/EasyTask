@@ -11,48 +11,71 @@
             <div class="col s12 distance-min">
                 <ul class="tabs">
                     <li class="tab col s3"><a class="black-text" href="#editar_perfil">Editar Perfil</a></li>
-                    <!--li class="tab col s3"><a class="black-text" href="#altera_credenciais">Alterar Credenciais</a></li>
-                    <li class="tab col s3"><a class="black-text" href="#faturamento">Faturamento</a></li>
+                    <li class="tab col s3"><a class="black-text" href="#altera_credenciais">Alterar Credenciais</a></li>
+                    <!--li class="tab col s3"><a class="black-text" href="#faturamento">Faturamento</a></li>
                     <li class="tab col s3"><a class="black-text" href="#avaliacao">Avaliação</a></li-->
                 </ul>
             </div>
-            <div id="editar_perfil" class="col s12">
-                <form th:action="@{/user/edit}" method="post">
 
-                    <input name="username" th:value="${#authentication.name}" hidden="false"/>
+            <div class="center">
+                <p th:text="${message}" th:class="${cor} + '-text'"></p>
+            </div>
+
+            <div id="editar_perfil" class="col s12">
+                <form th:action="@{/user/edit/basic}" method="post">
+
+                    <input name="username" th:value="${usuario.username}" hidden="true"/>
 
                     <div class="input-field col m12 s12">
                         <i class="material-icons prefix">person</i>
-                        <input name="nome" id="name" type="text" class="validate" required="required" />
+                        <input name="nome" id="name" type="text" class="validate" th:value="${usuario.nome}" />
                         <label for="name" data-error="nome inválido" data-success="nome válido">Nome</label>
                     </div>
 
                     <div class="input-field col m12 s12">
                         <i class="material-icons prefix">call</i>
-                        <input name="telefone" id="telefone" type="tel" class="validate" />
+                        <input name="telefone" id="telefone" type="tel" class="validate" th:value="${usuario.telefone}"/>
                         <label for="telefone" data-error="telefone inválido" data-success="telefone válido">Telefone</label>
                     </div>
 
                     <div class="input-field col m12 s12">
                         <i class="material-icons prefix">mail</i>
-                        <input name="email" id="email" type="email" class="validate" required="required" />
+                        <input name="email" id="email" type="email" class="validate" th:value="${usuario.email}"/>
                         <label for="email" data-error="nome inválido" data-success="nome válido">Email</label>
                     </div>
 
-                    <div class="input-field col m12 s12 tooltipped" data-position="top" data-tooltip="Senha necessaria para alterar o usuario">
-                        <i class="material-icons prefix">lock</i>
-                        <input name="password" id="name" type="email" class="validate" required="required" />
-                        <label for="name" data-error="nome inválido" data-success="nome válido">Senha</label>
-                    </div>
-
                     <div class="input-field">
-                        <button class="btn blue right">Enviar</button>
+                        <button class="btn blue right">Altera</button>
                     </div>
                 </form>
 
             </div>
-            <!--div id="altera_credenciais" class="col s12">Test 2</div>
-            <div id="faturamento" class="col s12">Test 3</div>
+            <div id="altera_credenciais" class="col s12">
+                <form th:action="@{/user/edit/hard}" method="post">
+                    <input name="username" th:value="${#authentication.name}" hidden="hidden" />
+
+                    <div class="input-field col m12 s12">
+                        <i class="material-icons prefix">lock</i>
+                        <input name="password" id="password" type="password" class="validate" min="4" />
+                        <label for="password">Nova senha</label>
+                    </div>
+                    <div class="input-field col m12 s12">
+                        <i class="material-icons prefix">lock</i>
+                        <input name="cpassword" id="cpassword" type="password" class="validate" min="4" />
+                        <label for="cpassword">Nova senha</label>
+                    </div>
+                    <div class="input-field col m12 s12">
+                        <i class="material-icons prefix">lock</i>
+                        <input name="oldpassword" id="oldpassword" type="password" class="validate" min="4" />
+                        <label for="oldpassword">Senha antiga</label>
+                    </div>
+
+                    <div class="input-field col m12 s12">
+                        <button class="btn blue">Alterar Senha</button>
+                    </div>
+                </form>
+            </div>
+            <!--div id="faturamento" class="col s12">Test 3</div>
             <div id="avaliacao" class="col s12">Test 4</div-->
 
         </div>

@@ -6,13 +6,10 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
 
 @Entity
 @Table(name = "servicos")
 public class Servico {
-    private static final long serialVersionUID = -3366643816768268993L;
-
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

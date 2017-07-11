@@ -10,7 +10,7 @@
             <p>Voce está na lista de pedidos.
                 Abaixo estão os contratos em vigor nos quais você pode responder e apresentar sua oferta.</p>
             <strong>Categoria</strong>
-            <form id="filtro">
+            <!--form id="filtro">
                 <select id="categoria" name="categoria" th:value="*{categorias}">
                     <option disabled="true" selected="true">Escolha um filtro</option>
                     <option th:each="categoria : ${categorias}"
@@ -18,7 +18,7 @@
                             th:text="${categoria.nome}" ></option>
                 </select>
                 <label for="categoria">Categoria</label>
-            </form>
+            </form-->
 
             <th:block th:each="pedido : ${pedidos}">
                 <div class="divider col m12 s12"></div>

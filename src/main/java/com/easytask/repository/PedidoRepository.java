@@ -14,4 +14,5 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
     List<Pedido> findAllByStatusNotAndUsuario_Username (Status status, String username);
     List<Pedido> findAllByStatusAndUsuario_UsernameNot(Status status, String username);
     List<Pedido> findAllByStatusAndUsuario_UsernameNot(Status status, String username, Sort sort);
+    List<Pedido> findAllByProfissionalUsername(String username);
 }

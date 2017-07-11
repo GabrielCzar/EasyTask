@@ -1,18 +1,20 @@
 package com.easytask.controller;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.easytask.model.Oferta;
 import com.easytask.model.Pedido;
 import com.easytask.model.Usuario;
 import com.easytask.model.enumeracoes.Status;
 import com.easytask.repository.OfertaRepository;
 import com.easytask.repository.PedidoRepository;
-import com.easytask.repository.UsuarioRepository;
 import com.easytask.service.implementacao.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 @RestController
 @RequestMapping("/oferta")

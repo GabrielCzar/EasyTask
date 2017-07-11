@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
-
-import com.easytask.model.Usuario;
-import com.easytask.service.implementacao.UsuarioService;
 import org.springframework.stereotype.Service;
+
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserDetailsServico implements UserDetailsService{
@@ -17,11 +15,9 @@ public class UserDetailsServico implements UserDetailsService{
 	private UsuarioService usuarioService;
 	
 	@Override
+	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username_or_email) throws UsernameNotFoundException {
-		Usuario usuario = usuarioService.findUsuarioByUsernameOrEmail(username_or_email);
-		if (usuario != null) 
-			return usuario;
-		throw new UsernameNotFoundException("Login inválido");
+        return usuarioService.findUsuarioByUsernameOrEmail(username_or_email);
 	}
 	
 }

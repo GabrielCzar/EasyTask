@@ -1,8 +1,5 @@
 package com.easytask.model.enumeracoes;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public enum CategoriaServico {
     DESENVOLVEDOR_WEB_FRONT_END("Desenvolvimento de Aplicações Web (Front-End)"),
     DESENVOLVEDOR_WEB_BACK_END("Desenvolvimento de Aplicações Web (Back-End)"),

@@ -60,13 +60,24 @@
             </div>
 
             <div id="minhas_ordens" class="col s12 m12">
-                <div>
+                <div th:if="${#lists.isEmpty(ordens)}">
                     <h3>As minhas ordens</h3>
                     <p>Neste momento, você não está trabalhando em nenhum projeto.</p>
-
+                </div>
+                <table>
+                    <tr th:each="ordem : ${ordens}">
+                        <th>
+                            <h4 th:text="${ordem.nome}"></h4>
+                        </th>
+                        <th>
+                            <a th:href="@{'/pedidos/user/' + ${ordem.id}}">Visualizar</a>
+                        </th>
+                        <div class="divider"></div>
+                    </tr>
+                </table>
+                <div>
                     <a class="btn blue" th:href="@{/projetos/show}">Encontrar Projeto</a>
                 </div>
-
             </div>
 
         </div>

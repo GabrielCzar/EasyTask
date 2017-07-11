@@ -17,6 +17,7 @@ $(() => {
             },
             error: function (response) {
                 $('#message').text('Não foi possivel fazer a oferta!');
+                $('#message').addClass('center flow-text red-text');
             }
         });
 
