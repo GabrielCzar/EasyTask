@@ -1,26 +1,32 @@
 'use strict';
 
 $(() => {
-    $('#filtro').submit(function (e) {
-        var filtro = $('#categoria').val()
-        var username = $('#usuario').text()
 
-        $.ajax({
-            method: 'get',
-            url: '/api/projetos/' + filtro,
-            data: {username : username}
-        }).done((data) => {
-            $('#projetos').empty();
-            mostrarProjetos(data)
-        }).fail((e) => {
-            console.log('ERROR: Selecione uma categoria!')
-        })
+    $('#categoria').change(function (e) {
+        $('#categoria option:selected').each(function() {
+            var filtro = $(this).val();
+            var username = $('#usuario').text();
 
-        e.preventDefault()
-    })
-})
+            $.ajax({
+                method: 'get',
+                url: '/api/projetos/' + filtro,
+                data: {username: username}
+            }).done((data) => {
+                $('#projetos').empty();
+                mostrarProjetos(data);
+            }).fail((e) => {
+                console.log('ERROR: Selecione uma categoria!');
+            });
+        });
+        e.preventDefault();
+    });
+
+});
+
 
 function mostrarProjetos(projetos) {
+    if (projetos.length <= 0)
+        $('#projetos').append('<p class="flow-text center red-text">Esta categoria não possui nenhuma demanda ativa</p>')
     projetos.forEach((pedido) => {
         $('#projetos').append(componentProjeto(pedido))
     })

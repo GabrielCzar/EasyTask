@@ -10,35 +10,18 @@
             <p>Voce está na lista de pedidos.
                 Abaixo estão os contratos em vigor nos quais você pode responder e apresentar sua oferta.</p>
             <strong>Categoria</strong>
-            <form id="filtro">
-                <select id="categoria" name="categoria" th:value="*{categorias}">
-                    <option disabled="true" selected="true">Escolha um filtro</option>
-                    <option th:each="categoria : ${categorias}"
-                            th:value="${categoria}"
-                            th:text="${categoria.nome}" ></option>
-                </select>
-                <label for="categoria">Categoria</label>
 
-                <button type="submit" class="btn blue">Enviar</button>
-            </form>
+            <select id="categoria" name="categoria" th:value="*{categorias}">
+                <option disabled="true" selected="true">Escolha um filtro</option>
+                <option th:each="categoria : ${categorias}"
+                        th:value="${categoria}"
+                        th:text="${categoria.nome}" ></option>
+            </select>
+            <label for="categoria">Categoria</label>
 
-            <th:block th:each="pedido : ${pedidos}">
-                <div class="divider col m12 s12"></div>
-                <div class="col m12 s12">
-                <h4 th:text="${pedido.nome}" class="blue-text left"></h4>
-                    <a th:href="@{'/pedidos/user/' + ${pedido.id}}" class="btn blue right distance-min">Detalhes</a>
-                </div>
-                <div class="col m6 s12">
-                    <p><strong>Categoria: </strong><span th:text="${pedido.servico.categoria.nome}"></span></p>
-                    <p><strong>Patrocinado: </strong><span th:text="${pedido.usuario.nome}"></span></p>
-                    <p><strong>Preço estimado: </strong><span th:text="${pedido.valorEstimado}"></span></p>
-                </div>
-                <div class="col m6 s12">
-                    <p th:text="${pedido.servico.atividade}" class="truncate"></p>
-                </div>
-            </th:block>
-
-            <div id="projetos"></div>
+            <div id="projetos">
+                <p class="center flow-text red-text">Escolha uma categoria para mostrar as demandas existentes!</p>
+            </div>
 
         </div>
     </div>
