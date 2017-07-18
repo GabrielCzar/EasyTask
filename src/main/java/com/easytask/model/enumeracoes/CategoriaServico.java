@@ -1,5 +1,7 @@
 package com.easytask.model.enumeracoes;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum CategoriaServico {
     DESENVOLVEDOR_WEB_FRONT_END("Desenvolvimento de Aplicações Web (Front-End)"),
     DESENVOLVEDOR_WEB_BACK_END("Desenvolvimento de Aplicações Web (Back-End)"),
@@ -25,6 +27,7 @@ public enum CategoriaServico {
         this.nome = nome;
    }
 
+    @JsonValue
     public String getNome () {
         return nome;
     }

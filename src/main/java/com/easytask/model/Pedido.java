@@ -1,6 +1,9 @@
 package com.easytask.model;
 
 import com.easytask.model.enumeracoes.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
@@ -14,7 +17,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
 @Entity(name = "pedidos")
+@JsonIgnoreProperties({ "previsaoFim", "dataFim" })
+@JsonInclude(NON_NULL)
 public class Pedido {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
@@ -34,13 +41,13 @@ public class Pedido {
     @NumberFormat(pattern = "#,##")
     private BigDecimal valorEstimado;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss") @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy hh:mm:ss")
     private Date dataInicio;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss") @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy hh:mm:ss")
     private Date previsaoFim;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss") @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy hh:mm:ss")
     private Date dataFim;
 
     @Enumerated(EnumType.STRING)

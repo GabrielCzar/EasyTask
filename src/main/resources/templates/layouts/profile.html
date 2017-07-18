@@ -33,7 +33,7 @@
             <ul id="slide-out" class="side-nav hide">
                 <li><div class="userView">
                     <div class="background">
-                        <img src="images/office.jpg" />
+                        <img src="#"/>
                     </div>
                         <a href="#!name"><span class="white-text name" ></span></a>
                         <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
@@ -53,7 +53,7 @@
 
                 <a class='dropdown-button btn btn-flat btn-large' th:href='@{/servicos/user}'
                    data-activates='dropdown_user_account'>
-                    <span class="left" th:text="${#authentication.name}"></span>
+                    <span id="usuario" class="left" th:text="${#authentication.name}"></span>
                     <i class="material-icons right">account_circle</i>
                 </a>
 
@@ -109,6 +109,7 @@
 <script th:src="@{/layout/js/formularios.js}"></script>
 <script th:src="@{/layout/js/other.js}"></script>
 <script th:src="@{/layout/js/mascaras.js}"></script>
+<script th:src="@{/layout/js/filtro.js}"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>

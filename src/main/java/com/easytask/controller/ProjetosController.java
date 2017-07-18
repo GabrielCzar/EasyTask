@@ -39,7 +39,7 @@ public class ProjetosController {
 
     @GetMapping("/show")
     public ModelAndView showProjetos(Authentication auth, HashMap<String, Object> map) {
-        map.put("pedidos", pedidoRepository.findAllByStatusAndUsuario_UsernameNot(Status.PENDENTE, auth.getName()));
+        map.put("pedidos", pedidoRepository.findAllByStatusAndUsuario_UsernameNotOrderByDataInicio(Status.PENDENTE, auth.getName()));
         map.put("categorias", CategoriaServico.values());
         return new ModelAndView("pedidos/show-projetos", map);
     }
