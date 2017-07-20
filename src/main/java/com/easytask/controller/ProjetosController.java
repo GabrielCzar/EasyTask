@@ -9,6 +9,7 @@ import com.easytask.model.Usuario;
 import com.easytask.repository.OfertaRepository;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +42,7 @@ public class ProjetosController {
     public ModelAndView showProjetos(Authentication auth, HashMap<String, Object> map) {
         map.put("pedidos", pedidoRepository.findAllByStatusAndUsuario_UsernameNotOrderByDataInicio(Status.PENDENTE, auth.getName()));
         map.put("categorias", CategoriaServico.values());
+
         return new ModelAndView("pedidos/show-projetos", map);
     }
 

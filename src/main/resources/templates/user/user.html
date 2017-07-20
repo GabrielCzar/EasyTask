@@ -22,9 +22,19 @@
             </div>
 
             <div id="editar_perfil" class="col s12">
-                <form th:action="@{/user/edit/basic}" method="post">
+                <form th:action="@{/user/edit/basic}" method="post" enctype="multipart/form-data">
 
                     <input name="username" th:value="${usuario.username}" hidden="true"/>
+
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Imagem do perfil</span>
+                            <input type="file" />
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" />
+                        </div>
+                    </div>
 
                     <div class="input-field col m12 s12">
                         <i class="material-icons prefix">person</i>
