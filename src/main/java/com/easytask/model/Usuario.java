@@ -40,7 +40,6 @@ public class Usuario implements UserDetails {
 
     private String telefone;
 
-    @Transient
     private String url;
 
     private Boolean habilitado;
@@ -179,13 +178,15 @@ public class Usuario implements UserDetails {
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        if (url != null && !url.isEmpty())
+            this.url = url;
     }
 
-    public void merge(String nome, String email, String telefone){
+    public void merge(String nome, String email, String telefone, String url){
         setNome(nome);
         setTelefone(telefone);
         setEmail(email);
+        setUrl(url);
     }
 
     @Override

@@ -1,13 +1,12 @@
 package com.easytask.controller;
 
 import com.easytask.service.implementacao.SecurityService;
+import com.easytask.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.easytask.model.Usuario;
@@ -15,6 +14,8 @@ import com.easytask.service.implementacao.UsuarioService;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.jws.WebParam;
+import javax.servlet.ServletContext;
+import java.io.IOException;
 import java.util.HashMap;
 
 @Controller
@@ -28,6 +29,9 @@ public class UsuarioController {
     @Autowired
     SecurityService securityService;
 
+    @Autowired
+    private ServletContext servletContext;
+
     @GetMapping
     public ModelAndView user (Authentication auth, HashMap<String, Object> map) {
         map.put("usuario", usuarioService.findUserByUsername(auth.getName()));
@@ -35,9 +39,16 @@ public class UsuarioController {
     }
 
     @PostMapping("/edit/basic")
-    public ModelAndView editUser (Usuario usuario, RedirectAttributes attributes) {
+    public ModelAndView editUser (@ModelAttribute("usuario") Usuario usuario,
+                                  RedirectAttributes attributes,
+                                  @RequestParam(value = "imagem", required = false) MultipartFile imagem) {
+        if (!imagem.isEmpty()) {
+            usuario.setUrl(FileUtil.saveFile(servletContext.getRealPath("/"), usuario.getUsername(), imagem));
+            System.out.println(usuario.getUrl());
+        }
+
         Usuario aux = usuarioService.findUserByUsername(usuario.getUsername());
-        aux.merge(usuario.getNome(), usuario.getEmail(), usuario.getTelefone());
+        aux.merge(usuario.getNome(), usuario.getEmail(), usuario.getTelefone(), usuario.getUrl());
         usuarioService.update(aux);
         attributes.addFlashAttribute(MENSAGEM, "Seus dados foram atualizados com sucesso!");
         attributes.addFlashAttribute(COR, "green");

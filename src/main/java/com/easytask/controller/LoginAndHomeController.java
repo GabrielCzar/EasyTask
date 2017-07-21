@@ -2,6 +2,7 @@ package com.easytask.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class LoginAndHomeController {
                 return new ModelAndView("redirect:/login#form_cadastro");
             }
 
+            usuario.setUrl("user.png");
             usuarioService.add(usuario);
 
             return login(null);

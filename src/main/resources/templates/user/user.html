@@ -21,15 +21,19 @@
                 <p th:text="${message}" th:class="${cor} + '-text'"></p>
             </div>
 
-            <div id="editar_perfil" class="col s12">
+            <div id="editar_perfil" class="col m12 s12">
                 <form th:action="@{/user/edit/basic}" method="post" enctype="multipart/form-data">
 
                     <input name="username" th:value="${usuario.username}" hidden="true"/>
 
-                    <div class="file-field input-field">
+                    <div class="right col m2 s12">
+                        <img class="circle materialboxed" width="100px" th:src="@{'/resources/static/layout/images/usuario/' + ${usuario.url}}" th:alt="${usuario.url}"/>
+                    </div>
+
+                    <div class="file-field input-field col m10 s12">
                         <div class="btn">
                             <span>Imagem do perfil</span>
-                            <input type="file" />
+                            <input name="imagem" type="file" />
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" />
