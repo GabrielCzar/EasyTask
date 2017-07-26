@@ -1,12 +1,11 @@
 package com.easytask.controller;
 
-import java.util.Date;
-import java.util.HashMap;
-
 import com.easytask.model.Oferta;
 import com.easytask.model.Pedido;
-import com.easytask.model.Usuario;
+import com.easytask.model.enumeracoes.CategoriaServico;
+import com.easytask.model.enumeracoes.Status;
 import com.easytask.repository.OfertaRepository;
+import com.easytask.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -16,17 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.easytask.model.enumeracoes.CategoriaServico;
-import com.easytask.model.enumeracoes.Status;
-import com.easytask.repository.PedidoRepository;
-import com.easytask.service.implementacao.UsuarioService;
+import java.util.Date;
+import java.util.HashMap;
 
 @Controller
 @RequestMapping("/projetos")
 public class ProjetosController {
-
-    @Autowired
-    private UsuarioService usuarioService;
 
     @Autowired
     private PedidoRepository pedidoRepository;
