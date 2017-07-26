@@ -24,13 +24,13 @@ public class UsuarioController {
     private static final String MENSAGEM = "message", COR = "cor";
 
     @Autowired
-    UsuarioService usuarioService;
+    private UsuarioService usuarioService;
 
     @Autowired
-    SecurityService securityService;
+    private SecurityService securityService;
 
     @Autowired
-    IPhotoStorage photoStorage;
+    private IPhotoStorage photoStorage;
 
     @GetMapping
     public ModelAndView user (Authentication auth, HashMap<String, Object> map) {

@@ -18,7 +18,7 @@ import com.easytask.repository.PedidoRepository;
 public class PedidoController {
 
     @Autowired
-    PedidoRepository pedidoRepository;
+    private PedidoRepository pedidoRepository;
 
     @GetMapping("/{id}")
     public ModelAndView pedidosShow (Authentication auth, @PathVariable Long id, HashMap<String, Object> map) {

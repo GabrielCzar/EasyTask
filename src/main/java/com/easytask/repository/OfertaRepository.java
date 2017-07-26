@@ -7,7 +7,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OfertaRepository extends JpaRepository<Oferta, Long> {
-
-    void deleteAllByPedido(Pedido pedido);
-
 }

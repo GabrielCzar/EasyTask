@@ -15,7 +15,7 @@ import java.util.List;
 public class UsuarioService implements IUsuarioService{
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    private UsuarioRepository usuarioRepository;
 
     @Override
     public boolean add(Usuario usuario) {

@@ -25,13 +25,13 @@ import java.util.HashMap;
 public class ServicosController {
 
     @Autowired
-    UsuarioService usuarioService;
+    private UsuarioService usuarioService;
 
     @Autowired
-    ServicoRepository servicoRepository;
+    private ServicoRepository servicoRepository;
 
     @Autowired
-    PedidoRepository pedidoRepository;
+    private PedidoRepository pedidoRepository;
 
     @GetMapping
     public ModelAndView servicosUser (Authentication auth, HashMap<String, Object> map){

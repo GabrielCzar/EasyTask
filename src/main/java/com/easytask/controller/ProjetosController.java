@@ -26,13 +26,13 @@ import com.easytask.service.implementacao.UsuarioService;
 public class ProjetosController {
 
     @Autowired
-    UsuarioService usuarioService;
+    private UsuarioService usuarioService;
 
     @Autowired
-    PedidoRepository pedidoRepository;
+    private PedidoRepository pedidoRepository;
 
     @Autowired
-    OfertaRepository ofertaRepository;
+    private OfertaRepository ofertaRepository;
 
     @GetMapping("/show")
     public ModelAndView showProjetos(Authentication auth, HashMap<String, Object> map) {

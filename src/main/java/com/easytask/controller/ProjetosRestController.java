@@ -17,7 +17,7 @@ import java.util.List;
 public class ProjetosRestController {
 
     @Autowired
-    PedidoRepository pedidoRepository;
+    private PedidoRepository pedidoRepository;
 
     @GetMapping
     public List<Pedido> allPedidos(@ModelAttribute("username") String username) {

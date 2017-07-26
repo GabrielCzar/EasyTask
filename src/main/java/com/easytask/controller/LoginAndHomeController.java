@@ -21,7 +21,7 @@ import com.easytask.service.implementacao.UsuarioService;
 public class LoginAndHomeController {
 
     @Autowired
-    UsuarioService usuarioService;
+    private UsuarioService usuarioService;
 
     @RequestMapping("/login")
     public ModelAndView login (Authentication authentication) {

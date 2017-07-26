@@ -21,13 +21,13 @@ import com.easytask.service.implementacao.UsuarioService;
 public class OfertaController {
 
     @Autowired
-    OfertaRepository ofertaRepository;
+    private OfertaRepository ofertaRepository;
 
     @Autowired
-    UsuarioService usuarioService;
+    private UsuarioService usuarioService;
 
     @Autowired
-    PedidoRepository pedidoRepository;
+    private PedidoRepository pedidoRepository;
 
     @RequestMapping("/nova")
     public String novaOferta (@RequestParam("valor") BigDecimal valor,
