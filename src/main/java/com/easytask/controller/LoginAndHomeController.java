@@ -1,8 +1,6 @@
 package com.easytask.controller;
 
 import java.util.ArrayList;
-
-import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -7,9 +7,7 @@ import com.easytask.model.Oferta;
 import com.easytask.model.Pedido;
 import com.easytask.model.Usuario;
 import com.easytask.repository.OfertaRepository;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +20,6 @@ import com.easytask.model.enumeracoes.CategoriaServico;
 import com.easytask.model.enumeracoes.Status;
 import com.easytask.repository.PedidoRepository;
 import com.easytask.service.implementacao.UsuarioService;
-
-import javax.annotation.security.PermitAll;
 
 @Controller
 @RequestMapping("/projetos")
@@ -46,10 +42,9 @@ public class ProjetosController {
         return new ModelAndView("pedidos/show-projetos", map);
     }
 
-    @PostMapping("/{pedido_id}/oferta/{oferta_id}/aceitar/{username}")
-    public ModelAndView aceitar(@PathVariable("pedido_id") Long pid, @PathVariable("oferta_id") Long oid, @PathVariable("username") String username) {
+    @PostMapping("/{pedido_id}/oferta/{oferta_id}/aceitar")
+    public ModelAndView aceitar(@PathVariable("pedido_id") Long pid, @PathVariable("oferta_id") Long oid) {
         Pedido pedido = pedidoRepository.findOne(pid);
-        Usuario usuario = usuarioService.findUserByUsername(username);
         Oferta oferta = ofertaRepository.findOne(oid);
 
         pedido.setValor(oferta.getValor());

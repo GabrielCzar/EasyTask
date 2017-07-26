@@ -132,7 +132,7 @@
                                 <th th:text="${oferta.valor}"></th>
                                 <th:block th:if="${pedido.usuario.username == #authentication.name}">
                                     <th class="opcoes_oferta">
-                                        <form th:action="@{'/projetos/' + ${pedido.id} + '/oferta/' + ${oferta.id} + '/aceitar/' + ${#authentication.name}}" method="post">
+                                        <form th:action="@{'/projetos/' + ${pedido.id} + '/oferta/' + ${oferta.id} + '/aceitar'}" method="post">
                                             <button class="btn btn-flat">Aceitar</button>
                                         </form>
                                     </th><th>

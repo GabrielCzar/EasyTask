@@ -7,7 +7,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -40,6 +39,9 @@ public class Usuario implements UserDetails {
 
     private String telefone;
 
+    private String foto;
+
+    @Transient
     private String url;
 
     private Boolean habilitado;
@@ -182,11 +184,24 @@ public class Usuario implements UserDetails {
             this.url = url;
     }
 
-    public void merge(String nome, String email, String telefone, String url){
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        if (!foto.equals(getFoto()))
+            this.foto = foto;
+    }
+
+    public boolean hasFoto () {
+        return  foto != null && !foto.isEmpty();
+    }
+
+    public void merge(String nome, String email, String telefone, String foto){
         setNome(nome);
         setTelefone(telefone);
         setEmail(email);
-        setUrl(url);
+        setFoto(foto);
     }
 
     @Override

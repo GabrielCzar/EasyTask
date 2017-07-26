@@ -27,7 +27,8 @@
                     <input name="username" th:value="${usuario.username}" hidden="true"/>
 
                     <div class="right col m2 s12">
-                        <img class="circle materialboxed" width="100px" th:src="@{'/resources/static/layout/images/usuario/' + ${usuario.url}}" th:alt="${usuario.url}"/>
+                        <!--img class="circle materialboxed" width="100px" th:src="@{'/layout/images/usuario/' + ${usuario.url}}" th:alt="${usuario.url}"/-->
+                        <img class="circle materialboxed" width="100px" th:src="${usuario.url}" th:alt="${usuario.foto}"/>
                     </div>
 
                     <div class="file-field input-field col m10 s12">
