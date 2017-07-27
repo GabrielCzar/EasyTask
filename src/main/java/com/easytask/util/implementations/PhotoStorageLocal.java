@@ -18,7 +18,6 @@ import static java.nio.file.FileSystems.getDefault;
 public class PhotoStorageLocal implements IPhotoStorage {
     private static final String URL = "http://localhost:8080/user/fotos/";
     private static final String LOCAL = "src/main/resources/static/layout/images/usuario/";
-
     private final Path local;
 
     public PhotoStorageLocal() {
