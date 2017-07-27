@@ -14,7 +14,7 @@ public class Oferta {
     private BigDecimal valor;
 
     @OneToOne
-    Usuario usuario;
+    private Usuario usuario;
 
     @ManyToOne
     private Pedido pedido;
@@ -51,4 +51,11 @@ public class Oferta {
         this.usuario = usuario;
     }
 
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
 }

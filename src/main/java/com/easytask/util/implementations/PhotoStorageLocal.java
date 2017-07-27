@@ -52,7 +52,7 @@ public class PhotoStorageLocal implements IPhotoStorage {
     }
 
     @Override
-    public Resource loadAsResource(String photoName) {
+    public Resource loadAsResource(String photoName) throws RuntimeException{
         try {
             Path path = load(photoName);
             Resource resource = new UrlResource(path.toUri());

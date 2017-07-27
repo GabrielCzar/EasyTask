@@ -24,7 +24,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @JsonInclude(NON_NULL)
 public class Pedido {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     @ManyToOne @JoinColumn(name = "username", referencedColumnName = "username")
     private Usuario usuario;
