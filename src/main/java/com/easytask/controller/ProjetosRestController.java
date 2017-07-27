@@ -4,7 +4,6 @@ import com.easytask.model.Pedido;
 import com.easytask.model.enumeracoes.CategoriaServico;
 import com.easytask.model.enumeracoes.Status;
 import com.easytask.repository.PedidoRepository;
-import com.easytask.service.implementacao.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
