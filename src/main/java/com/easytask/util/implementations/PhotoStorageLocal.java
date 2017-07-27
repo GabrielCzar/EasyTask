@@ -52,16 +52,16 @@ public class PhotoStorageLocal implements IPhotoStorage {
     }
 
     @Override
-    public Resource loadAsResource(String photoName) throws RuntimeException{
+    public Resource loadAsResource(String photoName) {
         try {
             Path path = load(photoName);
             Resource resource = new UrlResource(path.toUri());
             if (resource.exists() || resource.isReadable())
                 return resource;
             else
-                throw new RuntimeException("Não foi possivel ler o arquivo: " + photoName);
+                throw new PhotoStorageNotFoundException("Não foi possivel ler o arquivo: " + photoName);
         } catch (MalformedURLException e) {
-            throw new RuntimeException("Não foi possivel ler o arquivo: " + photoName, e);
+            throw new PhotoStorageNotFoundException("Não foi possivel ler o arquivo: " + photoName, e);
         }
     }
 

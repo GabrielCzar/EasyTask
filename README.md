@@ -3,6 +3,8 @@
 ### EasyTask
 
 - Site de publicação e busca por serviços.
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2ef6a30c127e40d98c0ebe0fd05a0657)](https://www.codacy.com/app/GabrielCzar/EasyTask?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gabrielczar/easytask&amp;utm_campaign=Badge_Grade)
    
 #### Informações gerais
 
@@ -13,5 +15,5 @@ uma tabela.
 - Existem 3 usuarios nos scripts, como uso chaves SHA-1 elas não são facilmente
 visualizaveis atraves dos scripts, mas elas foram definidas para serem o mesmo valor dos usernames.
 
-- A aplicacao online: x-easytask.herokuapp.com   
+- A aplicacao online: https://x-easytask.herokuapp.com   
 - Repositório: https://github.com/GabrielCzar/EasyTask
