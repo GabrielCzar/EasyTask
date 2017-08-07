@@ -3,9 +3,9 @@
 ### EasyTask
 
 - Site de publicação e busca por serviços.
+  
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/331ddcd386e8471da75214389a5fcf5b)](https://www.codacy.com/app/GabrielCzar/EasyTask?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=GabrielCzar/EasyTask&amp;utm_campaign=Badge_Grade)
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2ef6a30c127e40d98c0ebe0fd05a0657)](https://www.codacy.com/app/GabrielCzar/EasyTask?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gabrielczar/easytask&amp;utm_campaign=Badge_Grade)
-   
 #### Informações gerais
 
 - Os script de inicializacao do database estao na pasta
