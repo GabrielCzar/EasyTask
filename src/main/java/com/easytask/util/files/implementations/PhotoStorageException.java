@@ -1,4 +1,4 @@
-package com.easytask.util.implementations;
+package com.easytask.util.files.implementations;
 
 public class PhotoStorageException extends RuntimeException {
 

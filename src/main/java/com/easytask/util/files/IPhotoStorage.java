@@ -1,4 +1,4 @@
-package com.easytask.util;
+package com.easytask.util.files;
 
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;

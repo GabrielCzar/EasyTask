@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.token.Token;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -49,7 +50,17 @@ public class Usuario implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER) @JoinTable(name="papel_usuario", joinColumns=@JoinColumn(name="usuario_id"), inverseJoinColumns=@JoinColumn(name="papel_id"))
     private List<Papel> papeis;
 
+    private String recoveryToken;
+
     // _____________ GETTERS AND SETTERS ______________
+
+    public String getRecoveryToken() {
+        return recoveryToken;
+    }
+
+    public void setRecoveryToken(String recoveryToken) {
+        this.recoveryToken = recoveryToken;
+    }
 
     public boolean isHabilitado() {
         return habilitado;

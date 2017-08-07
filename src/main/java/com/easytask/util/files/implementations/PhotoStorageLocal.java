@@ -1,6 +1,6 @@
-package com.easytask.util.implementations;
+package com.easytask.util.files.implementations;
 
-import com.easytask.util.IPhotoStorage;
+import com.easytask.util.files.IPhotoStorage;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -12,18 +12,19 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static com.easytask.util.Constants.STORAGE_LOCAL;
+import static com.easytask.util.Constants.URL_FOTOS;
 import static java.nio.file.FileSystems.getDefault;
 
 @Service
 public class PhotoStorageLocal implements IPhotoStorage {
-    private static final String URL = "http://localhost:8080/user/fotos/";
-    private static final String LOCAL = "src/main/resources/static/layout/images/usuario/";
+
     private final Path local;
 
     public PhotoStorageLocal() {
         this.local = getDefault()
                 .getPath(new File(getDefault()
-                        .getPath(LOCAL).toString())
+                        .getPath(STORAGE_LOCAL).toString())
                             .getAbsolutePath());
     }
 
@@ -32,7 +33,7 @@ public class PhotoStorageLocal implements IPhotoStorage {
         String namePhoto = user + "-" + photo.getOriginalFilename();
         try {
             if (photo.isEmpty())
-                throw new RuntimeException("Failed to store empty file " + photo.getOriginalFilename());
+                throw new RuntimeException("Falha ao armazenar o arquivo vazio " + photo.getOriginalFilename());
             Files.copy(photo.getInputStream(), this.local.resolve(namePhoto));
         } catch (IOException e) {
             throw new RuntimeException("Erro salvando a foto " + namePhoto, e);
@@ -42,7 +43,7 @@ public class PhotoStorageLocal implements IPhotoStorage {
 
     @Override
     public String getUrl(String namePhoto) {
-        return URL + namePhoto;
+        return URL_FOTOS + namePhoto;
     }
 
     @Override
